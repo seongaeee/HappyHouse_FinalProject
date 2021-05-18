@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="selectOne" parameterType="java.lang.String" resultType="Board">
-	    select * from board where no = #{no}
+	    select * from board where no=#{no}
 	</select>
 	
 	<insert id="insert" parameterType="Board">
@@ -19,11 +19,11 @@
 	
 	<update id="update" parameterType="Board">
 		update board 
-		set title=#{title}, content=#{content} where id=#{id}
+		set title=#{title}, content=#{content} where no=#{no}
 	</update>
 
 	<delete id="delete" parameterType="java.lang.String">
-		delete from board where id=#{id}
+		delete from board where no=#{no}
 	</delete>
 	
 </mapper>

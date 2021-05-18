@@ -20,8 +20,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board selectOne() {
-		return dao.selectOne();
+	public Board selectOne(int no) {
+		return dao.selectOne(no);
 	}
 
 	@Override
