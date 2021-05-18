@@ -4,7 +4,6 @@
 		  <board-header></board-header>
 		  <router-view></router-view>
     </div>
-    <router-view />
   </div>
 </template>
 
