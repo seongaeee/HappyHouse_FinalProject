@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<img alt="Vue logo" src="../assets/logo.png" />
+		<img alt="Vue logo" src="../assets/qna.png" />
 		<h1>TODO LIST - Vuex with Router</h1>
 		<div>
 			<router-link to="/board/input">추가</router-link> &nbsp;
