@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.happyhouse.dao.LikeAreaDao">
+
+	<insert id="addLikeArea" parameterType="LikeArea" >
+		insert into likearea(#{userid}, #{dongcode})
+	</insert>
+	
+	<delete id="deleteLikeArea" parameterType="LikeArea">
+		delete from likearea where userid = #{userid} and dongcode = #{dongcode}
+	</delete>
+</mapper>

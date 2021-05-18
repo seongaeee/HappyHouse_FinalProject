@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.happyhouse.dao.UserDao">
+	<insert id="registerMember" parameterType="User">
+		insert into userinfo values(#{id}, #{pass}, #{name}, #{email}, #{address}, #{tel})
+	</insert>
+	
+	<select id="login" parameterType="Map" resultType="User">
+		select * from userinfo where id = #{id} and pass = #{pass}
+	</select>
+	 
+	<select id="getMember" parameterType="java.lang.String" resultType="User">
+		select * from userinfo where id = #{id}
+	</select>
+	
+	<update id="modifyMember" parameterType="User">
+		update userinfo 
+		set pass=#{pass}, name=#{name}, email=#{email}, address=#{address}, tel=#{tel} where id=#{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="java.lang.String">
+		delete from userinfo where id=#{id}
+	</delete>
+	
+	<select id="findPass" parameterType="Map" resultType="User">
+		select * from userinfo where id=#{id} and name=#{name} and tel=#{tel}
+	</select>
+</mapper>
