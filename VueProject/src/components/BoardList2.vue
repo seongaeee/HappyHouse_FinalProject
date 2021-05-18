@@ -22,7 +22,7 @@ export default {
     created() {
 			this.$store.dispatch("ALLBOARD");
 		},
-  data() {
+    data() {
     return {
       currentPage: 1, // 현재 페이지
       perPage: 10, // 페이지당 보여줄 갯수
@@ -48,10 +48,10 @@ export default {
     };
   },
   methods: {
-    rowClick() {
-    //   this.$router.push({
-    //     path: `/board/detail/${item.content_id}`
-    //   });
+    rowClick(item) {
+      this.$router.push({
+        path: `/board/detail/${item.no}`
+      });
     },
     writeContent() {
       this.$router.push({
