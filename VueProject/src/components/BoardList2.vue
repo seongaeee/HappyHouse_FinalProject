@@ -1,17 +1,25 @@
 <template>
-  <div>
-    <b-table
-      striped
-      hover
-      :items="boardlist"
-      :per-page="perPage"
-      :current-page="currentPage"
-      :fields="fields"
-      @row-clicked="rowClick"
-    ></b-table>
-    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
-    <b-button @click="writeContent">글쓰기</b-button>
-  </div>
+    <section>
+        <b-row>
+            <b-col></b-col>
+            <b-col cols="8">
+                <div>
+                    <b-table
+                    striped
+                    hover
+                    :items="boardlist"
+                    :per-page="perPage"
+                    :current-page="currentPage"
+                    :fields="fields"
+                    @row-clicked="rowClick"
+                    ></b-table>
+                    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
+                    <b-button @click="writeContent">글쓰기</b-button>
+                </div>
+            </b-col>
+        <b-col></b-col>
+    </b-row>
+  </section>
 </template>
 
 <script>
