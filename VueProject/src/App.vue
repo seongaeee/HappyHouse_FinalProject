@@ -1,12 +1,23 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+		  <board-header></board-header>
+		  <router-view></router-view>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+	import BoardHeader from "./components/BoardHeader.vue";
+
+	export default {
+		name: "app",
+		components: {
+			BoardHeader, //router 화면만
+		},
+	};
+</script>
 
 <style>
 #app {
