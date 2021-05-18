@@ -27,6 +27,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td>내용</td>
+					<td>
+						{{ board.content}}
+					</td>
+				</tr>
+				<tr>
 					<td>조회수</td>
 					<td>
 						{{ board.count}}
@@ -34,6 +40,8 @@
 				</tr>
 			</tbody>
 		</table>
+		<span>수정하기</span><br>
+		<span>삭제하기</span>
 	</div>
 </template>
 

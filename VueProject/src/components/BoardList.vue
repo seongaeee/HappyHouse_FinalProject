@@ -30,7 +30,7 @@
 		methods: {
 			...mapActions({removeBoard: "DELETEBOARD"}),
 			showBoard(no) {
-				this.$router.push("board/detail/" + no);
+				this.$router.push("/board/detail/" + no);
 			},
 		},
 		components: {
