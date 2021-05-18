@@ -3,34 +3,33 @@
 		<table>
 			<tbody>
 				<tr>
-					<td>번호</td>
+					<td>글 번호</td>
 					<td>
-						{{ todo.num }}
+						{{ board.no }}
 					</td>
 				</tr>
 				<tr>
-					<td>할일</td>
+					<td>작성자</td>
 					<td>
-						{{ todo.content }}
+						{{ board.id }}
 					</td>
 				</tr>
 				<tr>
-					<td>등록일</td>
+					<td>작성일</td>
 					<td>
-						{{ todo.wdate }}
+						{{ board.wdate }}
 					</td>
 				</tr>
 				<tr>
-					<td>기한</td>
+					<td>제목</td>
 					<td>
-						{{ todo.edate }}
+						{{ board.title }}
 					</td>
 				</tr>
 				<tr>
-					<td>완료여부</td>
+					<td>조회수</td>
 					<td>
-						<span v-if="todo.done == 'Y'">완료</span>
-						<span v-else>미완료</span>
+						{{ board.count}}
 					</td>
 				</tr>
 			</tbody>
@@ -42,13 +41,13 @@
 	export default {
 		created() {
 			//action call
-			var no = this.$route.params.num; //이전화면에서 파라메터 받아옴
+			var no = this.$route.params.no; //이전화면에서 파라메터 받아옴
 			console.log(no);
-			this.$store.dispatch("SHOWTODO", { num: no });
+			this.$store.dispatch("SHOWBOARD", { no: no });
 		},
 		computed: {
-			todo() {
-				return this.$store.state.todo;
+			board() {
+				return this.$store.state.board;
 			},
 		},
 	};

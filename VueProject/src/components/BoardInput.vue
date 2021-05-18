@@ -30,7 +30,7 @@
 		methods: {
 			addBoard() {
 				if (this.newBoard.title != "" && this.newBoard.content != "") {
-					this.$store.dispatch("ADDBoard", this.newBoard);
+					this.$store.dispatch("ADDBOARD", this.newBoard);
 					this.clearInput();
 					this.$router.push("/board/list"); //목록화면으로
 				} else alert("내용을 입력하세요!");

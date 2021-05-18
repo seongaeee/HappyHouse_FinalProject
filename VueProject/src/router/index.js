@@ -12,6 +12,6 @@ export default new VueRouter({
 		{ path: "/board", component: BoardList },
 		{ path: "/board/list", component: BoardList },
 		{ path: "/board/input", component: BoardInput },
-		{ path: "/board/detail/:num", component: BoardDetail },
+		{ path: "/board/detail/:no", component: BoardDetail },
 	],
 });

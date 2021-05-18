@@ -3,8 +3,8 @@
 		<img alt="Vue logo" src="../assets/logo.png" />
 		<h1>TODO LIST - Vuex with Router</h1>
 		<div>
-			<router-link to="/input">추가</router-link> &nbsp;
-			<router-link to="/list">목록</router-link>
+			<router-link to="/board/input">추가</router-link> &nbsp;
+			<router-link to="/board/list">목록</router-link>
 		</div>
 	</header>
 </template>
