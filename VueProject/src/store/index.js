@@ -70,7 +70,21 @@ export default new Vuex.Store({
 					store.dispatch("ALLBOARD"); //call action
 				})
 				.catch((exp) => alert("추가 처리에 실패하였습니다." + exp));
-		},
+    },
+    UPDATEBOARD: (store, payload) => {
+      //console.log(payload);
+      axios
+        .put("/board", {
+          id: payload.id,
+          title: payload.title,
+          content: payload.content,
+        })
+        .then(() => {
+          console.log("수정 처리하였습니다.");
+          store.dispatch("ALLBOARD"); //call action
+        })
+        .catch((exp) => alert("수정 처리에 실패하였습니다." + exp));
+    },
 	},
 	//메소드 형식. 파라메터로 (state, payload)를 사용할 수 있음
 	mutations: {

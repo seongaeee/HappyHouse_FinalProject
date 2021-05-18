@@ -13,7 +13,10 @@ export default new VueRouter({
 		{ path: "/board", component: BoardList },
     { path: "/board/list", component: BoardList },
     { path: "/board/list2", component: BoardList2 },
-		{ path: "/board/input", component: BoardInput },
+    { path: "/board/input", component: BoardInput },
+    { path: "/board/input/:no", component: BoardInput },
+    { path: "/board/input2", component: BoardInput2 },
+    { path: "/board/input2/:no", component: BoardInput2 },
 		{ path: "/board/detail/:no", component: BoardDetail },
 	],
 });

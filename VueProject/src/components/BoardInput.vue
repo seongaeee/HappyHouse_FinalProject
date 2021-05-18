@@ -2,22 +2,35 @@
 	<div class="inputBox shadow">
 		<input
 			type="text"
-			v-model="newBoard.title"
-			placeholder="제목을 입력하세요"
-		/>
+			v-model:="newBoard.title"
+			value=
+		>
 		<input
 			type="text"
 			v-model="newBoard.content"
-			placeholder="내용을 입력하세요"
+			placeholder="내용을 입력해주세요."
 		/>
-		<span class="addContainer" @click="addBoard">
-			<i class="addBtn fas fa-plus" aria-hidden="true"></i>
-		</span>
+
+		<div v-if="no">
+			<span class="addContainer" @click="addBoard">
+				<i class="addBtn fas fa-plus" aria-hidden="true"></i>
+			</span>
+		</div>
+		<div v-else>
+			짜잔
+		</div>
 	</div>
 </template>
 
 <script>
 	export default {
+		created() {
+			this.no = this.$route.params.no;
+			if(this.no != ""){
+				this.$store.dispatch("SHOWBOARD", { no: this.no });
+				this.newBoard = this.$store.getters.board
+			}
+		},
 		data() {
 			return {
 				newBoard: {
@@ -25,8 +38,15 @@
 					content : "",
 					id : "tjddo님",
 				},
+				no: "",
+				
 			};
 		},
+		// computed: {
+		// 	board() {
+		// 		return this.$store.state.board;
+		// 	},
+		// },
 		methods: {
 			addBoard() {
 				if (this.newBoard.title != "" && this.newBoard.content != "") {
