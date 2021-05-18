@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 mx-auto mt-5">
-                    <h1 style="background-image:url(image/main2.jpg); height:300px; width:100%; padding:100px"><b>행복한 우리
+                    <h1 style="background-image:url(img/main2.jpg); height:300px; width:100%; padding:100px"><b>행복한 우리
                             집</b></h1>
                 </div>
 
@@ -109,7 +109,7 @@
     <!-- Image Showcases -->
     <section class="showcase">
         <div class="container">
-            <img src="image/bg-masthead.jpg" width=100%>
+            <img src="img/bg-masthead.jpg" width=100%>
         </div>
     </section>
 
@@ -117,7 +117,7 @@
     <section class="testimonials bg-light">
         <div class="container mt-5">
             <div class="row">
-                <img src="image/ad.jpg">
+                <img src="img/ad.jpg">
                 <div style="display:inline; padding:10px 0px 0px 80px;">
                     <h3>지혜롭게 내 집 마련하기</h3>
                     <hr>
