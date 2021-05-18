@@ -1,48 +1,28 @@
 <template>
-	<div>
-		<table>
-			<tbody>
-				<tr>
-					<td>글 번호</td>
-					<td>
-						{{ board.no }}
-					</td>
-				</tr>
-				<tr>
-					<td>작성자</td>
-					<td>
-						{{ board.id }}
-					</td>
-				</tr>
-				<tr>
-					<td>작성일</td>
-					<td>
-						{{ board.wdate }}
-					</td>
-				</tr>
-				<tr>
-					<td>제목</td>
-					<td>
-						{{ board.title }}
-					</td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td>
-						{{ board.cont}}
-					</td>
-				</tr>
-				<tr>
-					<td>조회수</td>
-					<td>
-						{{ board.count}}
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<b-button variant="primary" @click="updateBoard">수정</b-button>&nbsp;
-        <b-button variant="success" @click="deleteBoard">삭제</b-button>
-	</div>
+	<b-row>
+        <b-col></b-col>
+        <b-col cols="8">
+			<div>
+				<br>
+				<div class="content-detail-content-info">
+					<div class="content-detail-content-info-left">
+						<div class="content-detail-content-info-left-number">글번호: {{ board.no }}</div>
+						<div class="content-detail-content-info-left-subject">제목: {{board.title}}</div>
+					</div>
+					<div class="content-detail-content-info-right">
+						<div class="content-detail-content-info-right-user">글쓴이: {{ board.id }}</div>
+						<div class="content-detail-content-info-right-created">작성일: {{ board.wdate }}</div>
+						<div class="content-detail-content-info-right-created">조회수: {{ board.count }}</div>
+					</div>
+				</div>
+				<div class="content-detail-content">{{board.content}}</div>
+				<br>
+				<b-button variant="primary" @click="updateBoard">수정</b-button>&nbsp;
+				<b-button variant="danger" @click="deleteBoard">삭제</b-button>
+			</div>
+		</b-col>
+        <b-col></b-col>
+    </b-row>
 </template>
 
 <script>
@@ -75,131 +55,48 @@
 </script>
 
 <style scoped>
-	input:focus {
-		outline: none;
-	}
-	.inputBox {
-		background: white;
-		height: 50px;
-		line-height: 50px;
-		border-radius: 5px;
-	}
-	.inputBox input {
-		border-style: none;
-		font-size: 0.9rem;
-	}
-	.addContainer {
-		background: linear-gradient(to right, #6478fb, #8763fb);
-		display: inline-block;
-		width: 3rem;
-		border-radius: 0 5px 5px 0;
-	}
+.content-detail-content-info {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
 
-	.modifyBtn {
-		color: white;
-		vertical-align: middle;
-	}
+.content-detail-content-info-left {
+  width: 720px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
 
-	table {
-		margin: 10px auto;
-		border-collapse: collapse;
-		border: 2px solid #996;
-		font: normal 90%/140% verdana, arial, helvetica, sans-serif;
-		color: #333;
-		background: #fffff0;
-	}
+.content-detail-content-info-right {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
 
-	.caption {
-		background-color: #222;
-		vertical-align: middle;
-		text-align: center;
-		padding: 15px;
-		font-size: 20px;
-		color: #fff;
-	}
+.content-detail-content {
+  border: 1px solid black;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  min-height: 720px;
+  font-size: 20px;
+}
 
-	td,
-	th {
-		border: 1px solid #cc9;
-		padding: 0.3em;
-	}
-	thead th,
-	tfoot th {
-		background-color: "#f5deb3";
-		border: 1px solid #cc9;
-		text-align: center;
-		font-size: 1em;
-		font-weight: bold;
-		color: #444;
-		background: #dbd9c0;
-	}
-	tbody td a {
-		background: transparent;
-		color: #72724c;
-		text-decoration: none;
-		border-bottom: 1px dotted #cc9;
-	}
-	tbody td a:hover {
-		background: transparent;
-		color: #666;
-		border-bottom: 1px dotted #72724c;
-	}
-	tbody th a {
-		background: transparent;
-		color: #72724c;
-		text-decoration: none;
-		font-weight: bold;
-		border-bottom: 1px dotted #cc9;
-	}
-	tbody th a:hover {
-		background: transparent;
-		color: #666;
-		border-bottom: 1px dotted #72724c;
-	}
-	tbody th,
-	tbody td {
-		vertical-align: top;
-		text-align: center;
-	}
-	tfoot td {
-		border: 1px solid #996;
-	}
-	.odd {
-		color: #333;
-		background: #f7f5dc;
-	}
-	tbody tr:hover {
-		color: #333;
-		background: #fff;
-	}
-	tbody tr:hover th,
-	tbody tr.odd:hover th {
-		color: #333;
-		background: #ddd59b;
-	}
+.content-detail-button {
+  border: 1px solid black;
+  margin-top: 1rem;
+  padding: 2rem;
+}
 
-	tbody tr {
-		height: 50px;
-		line-height: 50px;
-	}
-	ul {
-		padding: 22px 50px 50px 490px;
-		width: 940px;
-		list-style: none;
-	}
-	#gnb li {
-		display: inline;
-	}
-	#gnb li a {
-		display: inline-block;
-		background: #222;
-		color: #fff;
-		width: 150px;
-		height: 23px;
-		padding-top: 3px;
-		text-align: center;
-	}
-	#gnb li a:hover {
-		background: #900;
-	}
+.content-detail-comment {
+  border: 1px solid black;
+  margin-top: 1rem;
+  padding: 2rem;
+}
 </style>

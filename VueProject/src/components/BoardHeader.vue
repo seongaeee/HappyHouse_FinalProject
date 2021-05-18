@@ -3,7 +3,6 @@
 		<img alt="Vue logo" src="../assets/qna.png" />
 		<h1>HappyHouse Team9 QnA</h1>
 		<div>
-			<router-link to="/board/input">추가</router-link> &nbsp;
 			<router-link to="/board/list">목록</router-link>
 		</div>
 	</header>
