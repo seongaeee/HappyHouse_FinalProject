@@ -20,12 +20,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board selectOne(int no) {
+	public Board selectOne(String no) {
 		return dao.selectOne(no);
 	}
 
 	@Override
-	public void delete(int no) {
+	public void delete(String no) {
 		dao.delete(no);
 	}
 

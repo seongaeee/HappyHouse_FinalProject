@@ -28,12 +28,12 @@ public class BoardController {
 	}
 
 	@GetMapping(value="/board/{no}")
-	public Board selectOne(@PathVariable int no){
+	public Board selectOne(@PathVariable String no){
 		return service.selectOne(no);
 	}
 	
 	@DeleteMapping(value="/board/{no}")
-	public void delete(@PathVariable int no) {
+	public void delete(@PathVariable String no) {
 		service.delete(no);
 	};
 	

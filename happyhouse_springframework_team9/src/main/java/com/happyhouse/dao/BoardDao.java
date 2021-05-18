@@ -7,8 +7,8 @@ import com.happyhouse.vo.Board;
 public interface BoardDao {
 	
 	public ArrayList<Board> selectAll();
-	public Board selectOne(int no);
-	public void delete(int no);
+	public Board selectOne(String no);
+	public void delete(String no);
 	public void update(Board board);
 	public void insert(Board board); 
 	
