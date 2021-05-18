@@ -38,6 +38,11 @@ public class HomeController {
 		return "main";
 	}
 	
+	@GetMapping(value ="/board/list")
+	public String qna() {
+		return "qna";
+	}
+	
 	@PostMapping(value ="/selectDong")
 	public String selectDong(String dong, Model model) {
 		ArrayList<HouseInfo> list = hService.selectDong(dong);
