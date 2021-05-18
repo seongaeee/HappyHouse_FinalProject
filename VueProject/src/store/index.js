@@ -36,7 +36,7 @@ export default new Vuex.Store({
     
 		DELETEBOARD: (store, payload) => {
 			axios
-				.delete("/board/" + payload)
+				.delete("/board/" + payload.no)
 				.then(() => {
 					console.log("삭제 성공!");
 					store.dispatch("ALLBOARD");
@@ -72,10 +72,9 @@ export default new Vuex.Store({
 				.catch((exp) => alert("추가 처리에 실패하였습니다." + exp));
     },
     UPDATEBOARD: (store, payload) => {
-      //console.log(payload);
       axios
         .put("/board", {
-          id: payload.id,
+          no: payload.no,
           title: payload.title,
           content: payload.content,
         })

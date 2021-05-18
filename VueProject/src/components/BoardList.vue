@@ -1,81 +1,78 @@
 <template>
-	<section>
-		<transition-group name="list" tag="ul">
-			<li v-for="board in boardlist" :key="board.no" class="shadow">
-				<span @click="showBoard(board.no)">
-					{{ board.no }}. {{ board.title }}
-				</span>
-				<span class="removeBtn" type="button" @click="removeBoard(board.no)">
-					<i class="far fa-trash-alt" aria-hidden="true"></i>
-				</span>
-			</li>
-		</transition-group>
-		<boardFooter></boardFooter>
-	</section>
+    <section>
+        <b-row>
+            <b-col></b-col>
+            <b-col cols="8">
+                <div>
+                    <b-table
+                    striped
+                    hover
+                    :items="boardlist"
+                    :per-page="perPage"
+                    :current-page="currentPage"
+                    :fields="fields"
+                    @row-clicked="rowClick"
+                    ></b-table>
+                    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
+                    <b-button @click="writeContent">글쓰기</b-button>
+                </div>
+            </b-col>
+        <b-col></b-col>
+    </b-row>
+  </section>
 </template>
 
 <script>
-	import BoardFooter from "../components/BoardFooter";
-	import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
-	export default {
-		created() {
+export default {
+    name: "BoardList",
+    created() {
 			this.$store.dispatch("ALLBOARD");
 		},
+    data() {
+    return {
+      currentPage: 1, // 현재 페이지
+      perPage: 10, // 페이지당 보여줄 갯수
+      // bootstrap 'b-table' 필드 설정
+      fields: [
+        {
+          key: "no",
+          label: "번호"
+        },
+        {
+          key: "title",
+          label: "제목"
+        },
+        {
+          key: "id",
+          label: "글쓴이"
+        },
+        {
+          key: "wdate",
+          label: "작성일"
+        }
+      ],
+    };
+  },
+  methods: {
+    rowClick(item) {
+      this.$router.push({
+        path: `/board/detail/${item.no}`
+      });
+    },
+    writeContent() {
+      this.$router.push({
+        path: `/board/input`
+      });
+    }
+  },
+  computed: {
+    ...mapGetters(["boardlist"]),
+    rows() {
+      return this.boardlist.length;
+    },
+  }
+};
 
-		computed: {
-			...mapGetters(["boardlist"]), 
-		},
-
-		methods: {
-			...mapActions({removeBoard: "DELETEBOARD"}),
-			showBoard(no) {
-				this.$router.push("/board/detail/" + no);
-			},
-		},
-		components: {
-			BoardFooter,
-		},
-	};
 </script>
-
-<style scoped>
-	.del {
-		text-decoration: line-through;
-	}
-	ul {
-		list-style-type: none;
-		padding-left: 0px;
-		margin-top: 0;
-		text-align: left;
-	}
-	li {
-		display: flex;
-		min-height: 50px;
-		height: 50px;
-		line-height: 50px;
-		margin: 0.5rem 0;
-		padding: 0 0.9rem;
-		background: white;
-		border-radius: 5px;
-	}
-	.checkBtn {
-		line-height: 45px;
-		color: #62acde;
-		margin-right: 5px;
-	}
-	.removeBtn {
-		margin-left: auto;
-		color: #de4343;
-	}
-
-	.list-enter-active,
-	.list-leave-active {
-		transition: all 1s;
-	}
-	.list-enter,
-	.list-leave-to {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-</style>

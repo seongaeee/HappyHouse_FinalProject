@@ -29,7 +29,7 @@
 				<tr>
 					<td>내용</td>
 					<td>
-						{{ board.content}}
+						{{ board.cont}}
 					</td>
 				</tr>
 				<tr>
@@ -40,8 +40,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<span>수정하기</span><br>
-		<span>삭제하기</span>
+		<b-button variant="primary" @click="updateBoard">수정</b-button>&nbsp;
+        <b-button variant="success" @click="deleteBoard">삭제</b-button>
 	</div>
 </template>
 
@@ -58,6 +58,19 @@
 				return this.$store.state.board;
 			},
 		},
+		methods: {
+		deleteBoard() {
+			this.$store.dispatch("DELETEBOARD", { no: this.$route.params.no });
+			this.$router.push({
+				path: `/board/list`
+			});
+		},
+		updateBoard() {
+			this.$router.push({
+				path: `/board/input/${this.$route.params.no}`
+			});
+		}
+	},
 	};
 </script>
 

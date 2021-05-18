@@ -39,6 +39,7 @@ public class BoardController {
 	
 	@PutMapping(value="/board")
 	public void update(@RequestBody Board board) {
+		System.out.println(board.getNo());
 		service.update(board);
 	};
 	

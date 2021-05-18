@@ -1,92 +1,78 @@
 <template>
-	<div class="inputBox shadow">
-		<input
-			type="text"
-			v-model:="newBoard.title"
-			value=
-		>
-		<input
-			type="text"
-			v-model="newBoard.content"
-			placeholder="내용을 입력해주세요."
-		/>
-
-		<div v-if="no">
-			<span class="addContainer" @click="addBoard">
-				<i class="addBtn fas fa-plus" aria-hidden="true"></i>
-			</span>
-		</div>
-		<div v-else>
-			짜잔
-		</div>
-	</div>
+  <div>
+    <b-input v-model="title" placeholder="제목을 입력해주세요."></b-input>
+    <b-form-textarea
+        v-model="content"
+        placeholder="내용을 입력해 주세요"
+        rows="3"
+        max-rows="6"
+    ></b-form-textarea>
+    <br>
+    <b-button @click="updateMode ? updateBoard() : addBoard()">저장</b-button>&nbsp;
+    <b-button @click="cancle">취소</b-button>
+  </div>
 </template>
 
 <script>
-	export default {
-		created() {
-			this.no = this.$route.params.no;
-			if(this.no != ""){
-				this.$store.dispatch("SHOWBOARD", { no: this.no });
-				this.newBoard = this.$store.getters.board
-			}
-		},
-		data() {
-			return {
-				newBoard: {
-					title : "",
-					content : "",
-					id : "tjddo님",
-				},
-				no: "",
-				
-			};
-		},
-		// computed: {
-		// 	board() {
-		// 		return this.$store.state.board;
-		// 	},
-		// },
-		methods: {
-			addBoard() {
-				if (this.newBoard.title != "" && this.newBoard.content != "") {
-					this.$store.dispatch("ADDBOARD", this.newBoard);
-					this.clearInput();
-					this.$router.push("/board/list"); //목록화면으로
-				} else alert("내용을 입력하세요!");
-			},
-			clearInput() {
-				this.newBoard.title = "";
-				this.newBoard.content = "";
-			},
-		},
-	};
+export default {
+  name: 'BoardCreate',
+
+  data() {
+    return {
+      no: '',
+      id: 'tjddo님',
+      title: '',
+      content: '',
+      //updateObject: null,
+      updateMode: this.$route.params.no != null ? true : false,
+    }
+  },
+  created() {
+    console.log("notest"+this.updateMode);
+      if(this.$route.params.no != null) {
+        this.no = this.$route.params.no;
+        //this.$store.dispatch("SHOWBOARD", { no: this.no});
+        console.log(this.$store.getters.board);
+        console.log("너지? "+this.updateObject);
+        this.title = this.updateObject.title;
+        this.content = this.updateObject.content;
+      } 
+    },
+    computed: {
+      updateObject() {
+        return this.$store.getters.board;
+      },
+	  },
+    methods: {
+      addBoard() {
+          if (this.title != "" && this.content != "") {
+            this.$store.dispatch("ADDBOARD", {
+                          id: this.id,
+                          title: this.title,
+                          content: this.content,
+                      });
+            this.$router.push("/board/list"); //목록화면으로
+          } else alert("내용을 입력하세요!");
+    },
+    updateBoard() { // 수정
+        if (this.title != "" && this.content != "") {
+          this.$store.dispatch("UPDATEBOARD", {
+                    no: this.no,
+                    title: this.title,
+                    content: this.content,
+                });
+          this.$router.push("/board/list"); //목록화면으로
+        } else alert("내용을 입력하세요!");
+    },
+    cancle() {
+      this.$router.push({
+        path: '/board/list'
+      })
+    }
+  }
+}
 </script>
 
-<style scoped>
-	input {
-		outline: none;
-		background: gainsboro;
-	}
-	.inputBox {
-		background: white;
-		height: 50px;
-		line-height: 50px;
-		border-radius: 5px;
-	}
-	.inputBox input {
-		border-style: none;
-		font-size: 0.9rem;
-	}
-	.addContainer {
-		float: right;
-		background: linear-gradient(to right, #6478fb, #8763fb);
-		display: inline-block;
-		width: 3rem;
-		border-radius: 0 5px 5px 0;
-	}
-	.addBtn {
-		color: white;
-		vertical-align: middle;
-	}
+<style>
+
 </style>
