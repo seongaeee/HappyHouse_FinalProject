@@ -1,7 +1,6 @@
 <template>
     <div>
         <baisc-navbar></baisc-navbar>
-        sdf
     </div>
 </template>
 
