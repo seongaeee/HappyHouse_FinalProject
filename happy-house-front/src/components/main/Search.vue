@@ -2,19 +2,21 @@
     <div>
     <b-container>
         <b-row align-v="center">
-            <b-form-select v-model="selected1" :options="options" style="width:120px;"></b-form-select>
-            <b-form-select v-model="selected2" :options="options" style="width:120px;"></b-form-select>
-            <b-form-select v-model="selected3" :options="options" style="width:120px;"></b-form-select>
+            
         </b-row>
     </b-container>
     <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
 
     <b-container>
-        <b-row class="vh-100 text-center" align-v="center">
-            <b-col><b-button class="main-navigation-button" variant="primary">Create</b-button></b-col>
-            <b-col><b-button class="main-navigation-button" variant="primary">Search</b-button></b-col>
-            <b-col><b-button class="main-navigation-button" variant="primary">Edit</b-button></b-col>
-        </b-row>
+        <b-form-row class="vh-50 text-center" align-v="center">
+            <b-col-2 ><b-button class="main-navigation-button" variant="primary">Create</b-button></b-col-2>
+            <b-col-6>
+              <b-form-select v-model="selected1" :options="options" style="width:20%;"></b-form-select>
+              <b-form-select v-model="selected2" :options="options" style="width:20%;"></b-form-select>
+              <b-form-select v-model="selected3" :options="options" style="width:20%;"></b-form-select>
+            </b-col-6>
+            <b-col-2><b-button class="main-navigation-button" variant="primary">Edit</b-button></b-col-2>
+        </b-form-row>
     </b-container>
   </div>
 </template>

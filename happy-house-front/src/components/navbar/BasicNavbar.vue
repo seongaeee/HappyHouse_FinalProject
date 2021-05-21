@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="nav">
     <b-navbar toggleable="lg" type="dark" variant="secondary">
       <b-navbar-brand href="#">HappyHouse Team9</b-navbar-brand>
 
@@ -46,4 +46,9 @@ export default {
 
 <style>
 
+#nav{
+  width : 100%;
+  position: fixed;
+  z-index: 1;
+}
 </style>
