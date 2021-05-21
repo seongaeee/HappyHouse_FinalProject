@@ -83,6 +83,8 @@ export default {
   text-align: left;
   font: bold 16px sans-serif;
   padding: 55px 50px;
+  bottom: 0;
+  position: fixed;
 }
 
 .footer-distributed .footer-left,

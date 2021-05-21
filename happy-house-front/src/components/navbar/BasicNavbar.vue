@@ -45,7 +45,5 @@ export default {
 </script>
 
 <style>
-.b-navbar {
-  background-color: red;
-}
+
 </style>
