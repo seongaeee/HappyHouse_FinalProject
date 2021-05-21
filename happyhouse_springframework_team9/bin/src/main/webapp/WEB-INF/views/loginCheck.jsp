@@ -17,6 +17,9 @@
                         <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
                             data-target="#SignUpModal">Sign Up</button>
                     </li>
+                    <li class="nav-item" class="btn btn-primary mr-1">
+                        <a href="/board/list">QNA 가기</a>
+                    </li>
                 </ul>
 </c:if>
 
@@ -40,6 +43,9 @@
 	                    <a href="/logout">
 	                        <button id="SignOutButton" type="button" class="btn btn-primary mr-1">Sign Out</button>
 	                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/board/list">QNA 가기</a>
                     </li>
                 </ul>
 </c:if>
