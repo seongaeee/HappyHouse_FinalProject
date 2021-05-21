@@ -2,7 +2,7 @@
 
 0) Controller 기반 구조
  0-1. homeController : MVC 구조 / 로그인, 로그아웃, 아파트 매물 정보 제공
- 0-2. AddressController : 지역 정보를 받아오기 위한 RestfulAPI
+ 0-2. AddressController : 지역 정보를 받아오기 위한 RestfulAPI.
 
 
 1) 기본 기능
