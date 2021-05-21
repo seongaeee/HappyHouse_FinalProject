@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.happyhouse.dao.UserDao;
+import com.happyhouse.dto.SessionUser;
 import com.happyhouse.vo.User;
 
 @Service
@@ -45,4 +46,18 @@ public class UserServiceImpl implements UserService {
 		return dao.findPass(map);
 	}
 
+	//jwt를 위한 로그인 처리
+	@Override
+	public SessionUser signin(String id, String pass) {
+		if (id.equals("abc@def.net") && pass.equals("1234")) {
+            return new SessionUser(id, pass);
+        } else {
+            throw new RuntimeException("그런 사람은 없어요~");
+        }
+	}
+
+	@Override
+	public String getServerInfo() {
+		return "정보 전달 함수";
+	}
 }

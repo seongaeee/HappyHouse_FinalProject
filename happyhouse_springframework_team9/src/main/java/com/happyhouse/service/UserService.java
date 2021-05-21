@@ -1,6 +1,7 @@
 package com.happyhouse.service;
 import java.util.Map;
 
+import com.happyhouse.dto.SessionUser;
 import com.happyhouse.vo.User;
 
 public interface UserService {
@@ -23,5 +24,7 @@ public interface UserService {
 //  비밀번호 찾기를 위한 정보 얻기
 	User findPass(Map<String, String> map);
 	
-	
+//	jwt를 위한 로그인 처리
+	public SessionUser signin(String id, String pass);
+	public String getServerInfo();
 }

@@ -1,5 +1,7 @@
 package com.happyhouse.vo;
 
+import com.happyhouse.dto.SessionUser;
+
 //vo(value object):값을 저장하기 위한 용도.테이블 안의 레코드 한 건의 값을 저장하기 위한 목적
 public class User {
 	private String id;
@@ -12,6 +14,7 @@ public class User {
 	//constructor
 	public User() {}
 
+
 	public User(String id, String pass, String name, String email, String address, String tel) {
 		super();
 		this.id = id;
@@ -20,6 +23,11 @@ public class User {
 		this.email = email;
 		this.address = address;
 		this.tel = tel;
+	}
+
+	//jwt를 위한 comstructor
+	public SessionUser makeSessionUser() {
+		return new SessionUser(this.id, this.pass);
 	}
 
 	public String getId() {
