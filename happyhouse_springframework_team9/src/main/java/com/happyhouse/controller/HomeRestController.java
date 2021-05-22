@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,13 +35,13 @@ public class HomeRestController {
 	@Autowired
 	UserService uService;
 	
-	@PostMapping(value ="/selectDong")
-	public ArrayList<HouseInfo> selectDong(String dong, Model model) {
+	@PostMapping(value ="/search/{dong}")
+	public ArrayList<HouseInfo> selectDong(@PathVariable String dong) {
 		return hService.selectDong(dong);
 	}
 	
-	@GetMapping(value ="/deepSearch")
-	public ArrayList<HouseInfo> deepSearch(String aptName, Model model) {
+	@GetMapping(value ="/detail/{aptName}")
+	public ArrayList<HouseInfo> deepSearch(@PathVariable String aptName) {
 		return hService.selectApt(aptName);
 	}
 	
