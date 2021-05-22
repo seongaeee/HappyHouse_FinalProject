@@ -9,7 +9,7 @@
             <b-col cols="8">
               <b-form-select v-model="sido" :options="sidolist" style="width:20%; margin:1%;" @change="updategugun">시/도</b-form-select>
               <b-form-select v-model="gugun" :options="gugunlist" style="width:20%; margin:1%;" @change="updatedong"></b-form-select>
-              <b-form-select v-model="selected3" :options="donglist" style="width:20%; margin:1%;"></b-form-select>
+              <b-form-select v-model="dong" :options="donglist" style="width:20%; margin:1%;"></b-form-select>
               <b-button @click="search">search</b-button>
             </b-col>
             <b-col></b-col>
@@ -60,10 +60,9 @@
       },
       search(){
         if(this.dong != null){
-          this.$store.dispatch("SEARCH", {
-            dong : this.dong,
-          });
           this.$router.push("/result/" + this.dong);
+        }else{
+          console.log("실패!");
         }
         
       }

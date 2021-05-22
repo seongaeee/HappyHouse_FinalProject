@@ -12,6 +12,7 @@ export default new Vuex.Store({
     sidolist: [],
     gugunlist: [],
     donglist: [],
+    aptlist: [],
   },
 
   getters: {
@@ -34,6 +35,10 @@ export default new Vuex.Store({
 
     donglist(state) {
       return state.donglist;
+    },
+
+    aptlist(state) {
+      return state.aptlist;
     }
   },
 
@@ -41,9 +46,9 @@ export default new Vuex.Store({
     //수정중
     SEARCH: (store, payload) => {
       axios
-        .get("/selectDong/" +payload.dong)
+        .post("/search/" + payload.dong)
         .then((response) => {
-          store.commit("ALLSIDO", { sidolist: response.data });
+          store.commit("SEARCH", { aptlist: response.data });
         })
         .catch((response) => {
           console.log(response);
@@ -162,6 +167,10 @@ export default new Vuex.Store({
     },
     UPDATEDONG: (state, payload) => {
       state.donglist = payload.donglist;
+    },
+    SEARCH: (state, payload) => {
+      state.aptlist = payload.aptlist;
+      console.log("aptList test" + state.aptlist);
     },
 	},
 });
