@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <div class="alert alert-success">This is a sweet success message</div>
     <basic-header></basic-header>
-    test
     <router-view />
+    <basic-footer></basic-footer>
   </div>
 </template>
 
 <script>
+import BasicFooter from './components/footer/BasicFooter.vue';
 import BasicHeader from "./components/header/BasicHeader.vue";
 
 
@@ -15,8 +15,18 @@ import BasicHeader from "./components/header/BasicHeader.vue";
 		name: "app",
 		components: {
       BasicHeader,
+      BasicFooter,
 
 		},
 	};
 </script>
 
+<style>
+#app{
+  background-color: rgb(212, 212, 212);
+  height: 100%;
+  
+}
+
+
+</style>
