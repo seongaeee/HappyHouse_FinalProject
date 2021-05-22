@@ -84,6 +84,7 @@ export default {
   font: bold 16px sans-serif;
   padding: 20px 60px;
   bottom: 0;
+  
 }
 
 .footer-distributed .footer-left,
@@ -257,5 +258,7 @@ export default {
   }
 
 }
+
+
 
 </style>

@@ -24,7 +24,9 @@ import BasicHeader from "./components/header/BasicHeader.vue";
 <style>
 #app{
   background-color: rgb(212, 212, 212);
-  min-height: 100%;
-  position: relative;
+  height: 100%;
+  
 }
+
+
 </style>
