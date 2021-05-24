@@ -84,7 +84,7 @@ export default {
   methods: {
     rowClick(item) {
       this.$router.push({
-        path: `/detail/${item.no}`
+        path: `/detail/${item.aptName}`
       });
     },
   },
@@ -111,6 +111,7 @@ export default {
 	}
   #result-table{
     margin-top : 2%;
+    margin-bottom : 5%;
   }
 
 </style>

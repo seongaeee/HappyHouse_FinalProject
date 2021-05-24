@@ -13,6 +13,7 @@ export default new Vuex.Store({
     gugunlist: [],
     donglist: [],
     aptlist: [],
+    aptdetail: null,
   },
 
   getters: {
@@ -39,11 +40,26 @@ export default new Vuex.Store({
 
     aptlist(state) {
       return state.aptlist;
-    }
+    },
+
+    aptdetail(state) {
+			return state.aptdetail;
+    },
   },
 
   actions: {
-    //수정중
+
+    DETAIL: (store, payload) => {
+      axios
+        .post("/detail/" + payload.aptName)
+        .then((response) => {
+          store.commit("DETAIL", { aptdetail: response.data });
+        })
+        .catch((response) => {
+          console.log(response);
+        });
+    },
+
     SEARCH: (store, payload) => {
       axios
         .post("/search/" + payload.dong)
@@ -170,7 +186,9 @@ export default new Vuex.Store({
     },
     SEARCH: (state, payload) => {
       state.aptlist = payload.aptlist;
-      console.log("aptList test" + state.aptlist);
+    },
+    DETAIL: (state, payload) => {
+      state.aptdetail = payload.aptdetail;
     },
 	},
 });
