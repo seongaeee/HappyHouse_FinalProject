@@ -238,7 +238,7 @@ export default {
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
-@media (max-width: 880px) {
+@media (max-width: 100%) {
 
   .footer-distributed{
     font: bold 14px sans-serif;
@@ -256,9 +256,5 @@ export default {
   .footer-distributed .footer-center i{
     margin-left: 0;
   }
-
 }
-
-
-
 </style>

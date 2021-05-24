@@ -6,7 +6,8 @@ import Detail from "../components/result/Detail.vue";
 import QnaInput from "../components/qna/QnaInput.vue";
 import QnaList from "../components/qna/QnaList.vue";
 import QnaDetail from "../components/qna/QnaDetail.vue";
-import Login  from "../components/user/Login.vue";
+import Login from "../components/user/Login.vue";
+import SignUp  from "../components/user/SignUp.vue";
 
 Vue.use(VueRouter);
 
@@ -19,7 +20,8 @@ const routes = [
   { path: "/board/detail/:no", component: QnaDetail },
   { path: "/board/input", component: QnaInput },
   { path: "/board/input/:no", component: QnaInput },
-  { path: "/login", component: Login},
+  { path: "/login", component: Login },
+  { path: "/signup", component: SignUp},
   
 
 ];
