@@ -53,7 +53,7 @@ export default new Vuex.Store({
         .get("/detail/no/" + payload.no)
         .then((response) => {
           store.commit("DETAIL", { aptdetail: response.data });
-          console.log("apt_detail" + response.data);
+          console.log(response.data);
         })
         .catch((response) => {
           console.log(response);
