@@ -31,8 +31,9 @@ import DetailHeader from '../header/DetailHeader.vue';
 export default {
   components: { DetailHeader },
     created() {
-      var no = this.$route.params.no;
-			this.$store.dispatch("DETAIL", {no:no});
+      var dong = this.$route.params.dong;
+      var aptName = this.$route.params.aptName;
+			this.$store.dispatch("DETAIL", {dong:dong, aptName:aptName});
 		},
   computed: {
     ...mapGetters(["aptdetail"]),

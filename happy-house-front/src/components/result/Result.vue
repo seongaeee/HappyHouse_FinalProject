@@ -57,20 +57,32 @@ export default {
           label: "코드"
         },
         {
+          key: "dealAmount",
+          label: "거래금액"
+        },
+        {
           key: "buildYear",
-          label: "건축년도"
+          label: "거래년도"
         },
         {
-          key: "jibun",
-          label: "지번"
+          key: "dealYear",
+          label: "거래년도"
         },
         {
-          key: "lat",
-          label: "위도"
+          key: "dealMonth",
+          label: "거래월"
         },
         {
-          key: "lng",
-          label: "경도"
+          key: "dealDay",
+          label: "거래일"
+        },
+        {
+          key: "area",
+          label: "면적"
+        },
+        {
+          key: "floor",
+          label: "층"
         },
       ],
     };
@@ -84,7 +96,7 @@ export default {
   methods: {
     rowClick(item) {
       this.$router.push({
-        path: `/detail/${item.no}`
+        path: `/detail/${item.dong}/${item.aptName}`
       });
     },
   },

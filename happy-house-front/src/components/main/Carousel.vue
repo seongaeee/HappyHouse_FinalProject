@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="carousel">
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -75,5 +75,9 @@
     height:400px!important;
     width:800px!important;
     margin: auto;
+}
+
+#carousel{
+  padding-top: 55px;
 }
 </style>

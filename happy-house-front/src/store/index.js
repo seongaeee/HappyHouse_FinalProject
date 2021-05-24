@@ -50,7 +50,7 @@ export default new Vuex.Store({
   actions: {
     DETAIL: (store, payload) => {
       axios
-        .get("/detail/no/" + payload.no)
+        .get("/detail/" + payload.dong +"/" + payload.aptName)
         .then((response) => {
           store.commit("DETAIL", { aptdetail: response.data });
           console.log(response.data);
