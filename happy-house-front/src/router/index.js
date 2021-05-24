@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 const routes = [
   { path: "/", component: Main },
   { path: "/result/:dong", component: Result },
-  { path: "/detail", component: Detail },
+  { path: "/detail/:no", component: Detail },
   { path: "/board", component: QnaList },
   { path: "/board/list", component: QnaList },
   { path: "/board/detail/:no", component: QnaDetail },

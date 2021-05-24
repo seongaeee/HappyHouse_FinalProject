@@ -84,7 +84,7 @@ export default {
   methods: {
     rowClick(item) {
       this.$router.push({
-        path: `/detail/${item.aptName}`
+        path: `/detail/${item.no}`
       });
     },
   },
@@ -92,15 +92,6 @@ export default {
 </script>
 
 <style>
-#qna-header{
-	width : 100%;
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-
-	}
 	h1 {
 		color: #2f3b52;
 		font-weight: 900;

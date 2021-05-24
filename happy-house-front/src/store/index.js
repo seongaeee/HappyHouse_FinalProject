@@ -48,12 +48,12 @@ export default new Vuex.Store({
   },
 
   actions: {
-
     DETAIL: (store, payload) => {
       axios
-        .post("/detail/" + payload.aptName)
+        .get("/detail/no/" + payload.no)
         .then((response) => {
           store.commit("DETAIL", { aptdetail: response.data });
+          console.log("apt_detail" + response.data);
         })
         .catch((response) => {
           console.log(response);
