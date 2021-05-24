@@ -31,6 +31,11 @@ public class HouseServiceImpl implements HouseService{
 		return dao.selectApt(apt);
 	}
 
+	@Override
+	public HouseInfo selectNo(String no) {
+		return dao.selectNo(no);
+	}
+
 
 
 

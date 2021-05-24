@@ -40,9 +40,14 @@ public class HomeRestController {
 		return hService.selectDong(dong);
 	}
 	
-	@GetMapping(value ="/detail/{aptName}")
+	@GetMapping(value ="/detail/name/{aptName}")
 	public ArrayList<HouseInfo> deepSearch(@PathVariable String aptName) {
 		return hService.selectApt(aptName);
+	}
+	
+	@GetMapping(value ="/detail/no/{no}")
+	public HouseInfo deepSearchNo(@PathVariable String no) {
+		return hService.selectNo(no);
 	}
 	
 	@PostMapping(value = "/signUpProcess")

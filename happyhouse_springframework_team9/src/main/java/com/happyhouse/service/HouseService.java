@@ -9,5 +9,6 @@ public interface HouseService {
 	public ArrayList<HouseInfo> selectAll();
 	public ArrayList<HouseInfo> selectDong(String dong);
 	public ArrayList<HouseInfo> selectApt(String apt);
+	public HouseInfo selectNo(String no);
 
 }
