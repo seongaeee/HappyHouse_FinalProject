@@ -13,6 +13,7 @@
           </b-col>
           <b-col cols="1"></b-col>
           <b-col cols="6">
+            <div id ="map" style="width:80%;height:100%;"></div>
           </b-col>
         </b-row>
       </div>
@@ -46,8 +47,35 @@ export default {
       return items;
     }
   },
+  mounted() {
+    if (window.kakao && window.kakao.maps) {
+      this.initMap();
+    } else {
+      const script = document.createElement('script');
+      /* global kakao */
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src =
+        'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=242fb4c309b28366b554b85bdd482fc5';
+      document.head.appendChild(script);
+    }
+  },
   methods: {
+    initMap() {
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(this.aptdetail.lat, this.aptdetail.lng), // 지도의 중심좌표
+            level: 3, // 지도의 확대 레벨
+          };
 
+      var map2 = new kakao.maps.Map(mapContainer, mapOption);
+
+            var markerPosition  = new kakao.maps.LatLng(this.aptdetail.lat, this.aptdetail.lng); 
+            var marker = new kakao.maps.Marker({
+                 position: markerPosition
+            });
+            marker.setMap(map2);
+      console.log(map2);
+    }
   },
 }
 </script>
