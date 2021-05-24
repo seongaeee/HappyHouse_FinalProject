@@ -13,7 +13,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="#">Login</b-nav-item>
+          <b-nav-item href="#"><router-link to="/login">Login</router-link></b-nav-item>
           <b-nav-item href="#" >Sign Up</b-nav-item>
 
           <b-nav-item-dropdown right>

@@ -6,14 +6,17 @@
         <b-row>
           <b-col cols="1">
           </b-col>
-          <b-col cols="4">
+          <b-col cols="5">
             <div>
+              <h1>매물 정보</h1>
               <b-table striped hover :items="items"></b-table>
             </div>
           </b-col>
-          <b-col cols="1"></b-col>
-          <b-col cols="6">
-            <div id ="map" style="width:80%;height:100%;"></div>
+          <b-col cols="5">
+            <h1>매물 위치</h1>
+            <div id ="map" style="width:100%;height:100%;"></div>
+          </b-col>
+          <b-col col="1">
           </b-col>
         </b-row>
       </div>
