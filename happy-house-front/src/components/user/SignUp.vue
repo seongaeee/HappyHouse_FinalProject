@@ -113,11 +113,11 @@ import SignUpHeader from './SignUpHeader.vue'
     computed: {
       idState() {
         if(this.pass2.length <= 3) {
-            document.getElementById('input-id-feedback').innerText = "ID를 입력해주세요.";
+            //document.getElementById('input-id-feedback').innerText = "ID를 입력해주세요.";
             return false;
         }
         else {
-            document.getElementById('input-pass2-feedback').innerText = "이미 존재하는 아이디 입니다.";
+            document.getElementById('input-id-feedback').innerText = "이미 존재하는 아이디 입니다.";
             //비동기로 아이디가 존재하는지 확인해야함.
             return true;
         }
@@ -127,7 +127,7 @@ import SignUpHeader from './SignUpHeader.vue'
       },
       pass2State() {
         if(this.pass2.length <= 3) {
-            document.getElementById('input-pass2-feedback').innerText = "비밀번호를 입력해주세요.";
+            //document.getElementById('input-pass2-feedback').innerText = "비밀번호를 입력해주세요.";
             return false;
         }
         else {
@@ -147,7 +147,10 @@ import SignUpHeader from './SignUpHeader.vue'
         address: "",
         tel : "",
       }
-    }
+    },
+    methods: {
+        
+    },
   }
 </script>
 
