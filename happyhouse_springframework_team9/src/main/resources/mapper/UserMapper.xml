@@ -5,7 +5,7 @@
    
 <mapper namespace="com.happyhouse.dao.UserDao">
 	<insert id="registerMember" parameterType="User">
-		insert into userinfo values(#{id}, #{pass}, #{name}, #{email}, #{address}, #{tel})
+		insert into userinfo values(#{id}, #{pass}, #{name}, #{email}, #{address}, #{tel}, #{office}, #{car}, #{pet})
 	</insert>
 	
 	<select id="login" parameterType="Map" resultType="User">
@@ -18,7 +18,7 @@
 	
 	<update id="modifyMember" parameterType="User">
 		update userinfo 
-		set pass=#{pass}, name=#{name}, email=#{email}, address=#{address}, tel=#{tel} where id=#{id}
+		set pass=#{pass}, name=#{name}, email=#{email}, address=#{address}, tel=#{tel}, office=#{office}, car=#{car}, pet=#{pet} where id=#{id}
 	</update>
 	
 	<delete id="deleteMember" parameterType="java.lang.String">

@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.happyhouse.dao.HouseDao;
+import com.happyhouse.service.DistService;
 import com.happyhouse.service.HouseService;
 import com.happyhouse.service.UserService;
 import com.happyhouse.vo.HouseInfo;
+import com.happyhouse.vo.Position;
 import com.happyhouse.vo.User;
 
 @RestController
@@ -35,20 +37,23 @@ public class HomeRestController {
 	@Autowired
 	UserService uService;
 	
+	@Autowired
+	DistService dService;
+	
 	@PostMapping(value ="/search/{dong}")
 	public ArrayList<HouseInfo> selectDong(@PathVariable String dong) {
 		return hService.selectDong(dong);
 	}
 	
-	@GetMapping(value ="/detail/name/{aptName}")
+	@GetMapping(value ="/detail/{dong}/{aptName}")
 	public ArrayList<HouseInfo> deepSearch(@PathVariable String aptName) {
 		return hService.selectApt(aptName);
 	}
 	
-	@GetMapping(value ="/detail/no/{no}")
-	public HouseInfo deepSearchNo(@PathVariable String no) {
-		return hService.selectNo(no);
-	}
+//	@GetMapping(value ="/detail/no/{no}")
+//	public HouseInfo deepSearchNo(@PathVariable String no) {
+//		return hService.selectNo(no);
+//	}
 	
 	@PostMapping(value = "/signUpProcess")
 	public User signUpProcess(User user, HttpSession session) {
@@ -74,4 +79,60 @@ public class HomeRestController {
 	public void dropOut(User user, HttpSession session) {
 		uService.deleteMember(user.getId());
 	}
+	
+	//매물과 공원, 지하철, 직장과의 거리 구하기
+	@GetMapping(value = "/dist")
+	public void Dist() {
+		ArrayList<Position> stations = dService.stationSelectAll();
+		ArrayList<Position> parks = dService.parkSelectAll();
+		ArrayList<HouseInfo> houses = hService.selectAll();	
+		
+		double parkMindist = Double.MAX_VALUE;
+		double stationMindist = Double.MAX_VALUE;
+		
+		int idx=0;
+		//매물마다 거리 계산
+		for (HouseInfo house : houses) {
+			
+			//공원과의 거리 계산하고 가장 가까운 거리 얻기
+			for(Position park : parks) {
+				if(park.getLat().equals("") || park.getLng().equals("") || house.getLat().equals("") || house.getLng().equals("")) continue;
+				parkMindist = Math.min(parkMindist, distance(house, park));
+			}
+			
+			//지하철과의 거리 계산하고 가장 가까운 거리 얻기
+			for(Position station : stations) {
+				if(station.getLat().equals("") || station.getLng().equals("") || house.getLat().equals("") || house.getLng().equals("")) continue;
+				stationMindist = Math.min(stationMindist, distance(house, station));
+			}
+			
+			//매물 DB update
+			
+		}
+		System.out.println("성공");
+	}
+
+	private double distance(HouseInfo house, Position position) {
+		
+		double lat1 = Double.parseDouble(house.getLat());
+		double lat2 = Double.parseDouble(position.getLat());
+		double lon1 = Double.parseDouble(house.getLng());
+		double lon2 = Double.parseDouble(position.getLng());
+		
+		double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+         
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+ 
+        return (dist);
+	}
+    private static double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+    private static double rad2deg(double rad) {
+        return (rad * 180 / Math.PI);
+    }
+
 }

@@ -10,10 +10,12 @@ public class User {
 	private String email;
 	private String address;
 	private String tel;
+	private String office;
+	private String car;
+	private String pet;
 	
 	//constructor
 	public User() {}
-
 
 	public User(String id, String pass, String name, String email, String address, String tel) {
 		super();
@@ -23,6 +25,20 @@ public class User {
 		this.email = email;
 		this.address = address;
 		this.tel = tel;
+	}
+
+	public User(String id, String pass, String name, String email, String address, String tel, String office,
+			String car, String pet) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.email = email;
+		this.address = address;
+		this.tel = tel;
+		this.office = office;
+		this.car = car;
+		this.pet = pet;
 	}
 
 	//jwt를 위한 comstructor
@@ -78,7 +94,28 @@ public class User {
 		this.tel = tel;
 	}
 
-	
-	//getter/setter
-	
+	public String getOffice() {
+		return office;
+	}
+
+	public void setOffice(String office) {
+		this.office = office;
+	}
+
+	public String getCar() {
+		return car;
+	}
+
+	public void setCar(String car) {
+		this.car = car;
+	}
+
+	public String getPet() {
+		return pet;
+	}
+
+	public void setPet(String pet) {
+		this.pet = pet;
+	}
+
 }
