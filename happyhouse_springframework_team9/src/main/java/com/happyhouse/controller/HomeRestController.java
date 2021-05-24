@@ -47,7 +47,7 @@ public class HomeRestController {
 	}
 	
 	@GetMapping(value ="/detail/{dong}/{aptName}")
-	public ArrayList<HouseInfo> deepSearch(@PathVariable String dong, @PathVariable String aptName) {
+	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("dong", dong);
 		map.put("aptName", aptName);

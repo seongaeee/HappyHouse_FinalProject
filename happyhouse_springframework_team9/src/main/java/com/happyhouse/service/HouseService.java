@@ -10,7 +10,7 @@ import com.happyhouse.vo.HouseInfo;
 public interface HouseService {
 	public ArrayList<HouseInfo> selectAll();
 	public ArrayList<HouseDeal> selectDong(String dong);
-	public ArrayList<HouseInfo> deepSearch(Map<String, String> map);
+	public HouseInfo deepSearch(Map<String, String> map);
 	public HouseInfo selectNo(String no);
 
 }

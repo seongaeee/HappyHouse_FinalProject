@@ -27,8 +27,9 @@ public class HouseServiceImpl implements HouseService{
 	public ArrayList<HouseDeal> selectDong(String dong) {
 		return dao.selectDong(dong);
 	}
+	
 	@Override
-	public ArrayList<HouseInfo> deepSearch(Map<String, String> map) {
+	public HouseInfo deepSearch(Map<String, String> map) {
 		return dao.deepSearch(map);
 	}
 
