@@ -1,7 +1,6 @@
 <template>
 	<div id="detail-header">
 		<img alt="Qna logo" src="../../assets/house/house3.jpg" height=300px />
-		<h1>건물 정보</h1>
 	</div>
 </template>
 
