@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="selectDong" parameterType="java.lang.String" resultType="HouseDeal">
-	    select * from houseinfo where dong = #{dong}
+	    select * from houseDeal where dong = #{dong}
 	</select>
 	
 	<select id="deepSearch" parameterType="Map" resultType="HouseInfo">
