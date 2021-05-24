@@ -9,12 +9,12 @@
 	    select * from houseinfo
 	</select>
 
-	<select id="selectDong" parameterType="java.lang.String" resultType="HouseInfo">
+	<select id="selectDong" parameterType="java.lang.String" resultType="HouseDeal">
 	    select * from houseinfo where dong = #{dong}
 	</select>
 	
-	<select id="selectApt" parameterType="java.lang.String" resultType="HouseInfo">
-	    select * from houseinfo where AptName = #{apt} order by buildYear desc
+	<select id="deepSearch" parameterType="Map" resultType="HouseInfo">
+	    select * from houseinfo where dong = #{dong} and AptName = #{aptName}
 	</select>
 	
 	<select id="selectNo" parameterType="java.lang.String" resultType="HouseInfo">

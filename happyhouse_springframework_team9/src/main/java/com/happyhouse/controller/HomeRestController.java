@@ -22,6 +22,7 @@ import com.happyhouse.dao.HouseDao;
 import com.happyhouse.service.DistService;
 import com.happyhouse.service.HouseService;
 import com.happyhouse.service.UserService;
+import com.happyhouse.vo.HouseDeal;
 import com.happyhouse.vo.HouseInfo;
 import com.happyhouse.vo.Position;
 import com.happyhouse.vo.User;
@@ -41,13 +42,17 @@ public class HomeRestController {
 	DistService dService;
 	
 	@PostMapping(value ="/search/{dong}")
-	public ArrayList<HouseInfo> selectDong(@PathVariable String dong) {
+	public ArrayList<HouseDeal> selectDong(@PathVariable String dong) {
 		return hService.selectDong(dong);
 	}
 	
 	@GetMapping(value ="/detail/{dong}/{aptName}")
-	public ArrayList<HouseInfo> deepSearch(@PathVariable String aptName) {
-		return hService.selectApt(aptName);
+	public ArrayList<HouseInfo> deepSearch(@PathVariable String dong, @PathVariable String aptName) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("dong", dong);
+		map.put("aptName", aptName);
+		
+		return hService.deepSearch(map);
 	}
 	
 //	@GetMapping(value ="/detail/no/{no}")

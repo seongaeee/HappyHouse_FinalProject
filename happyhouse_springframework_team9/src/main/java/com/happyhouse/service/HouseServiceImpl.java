@@ -1,11 +1,13 @@
 package com.happyhouse.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.happyhouse.dao.HouseDao;
+import com.happyhouse.vo.HouseDeal;
 import com.happyhouse.vo.HouseInfo;
 
 //3-BoardService의 메소드를 구현한 객체.
@@ -18,17 +20,16 @@ public class HouseServiceImpl implements HouseService{
 	HouseDao dao; //인터페이스 타입으로 레퍼런스 선언
 
 	@Override
-	public ArrayList<HouseInfo> selectAll() {		
+	public ArrayList<HouseInfo> selectAll() {
 		return dao.selectAll();
 	}
-
 	@Override
-	public ArrayList<HouseInfo> selectDong(String dong) {
+	public ArrayList<HouseDeal> selectDong(String dong) {
 		return dao.selectDong(dong);
 	}
 	@Override
-	public ArrayList<HouseInfo> selectApt(String apt) {
-		return dao.selectApt(apt);
+	public ArrayList<HouseInfo> deepSearch(Map<String, String> map) {
+		return dao.deepSearch(map);
 	}
 
 	@Override
