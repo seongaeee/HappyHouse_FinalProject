@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.happyhouse.dao.HouseDao;
@@ -59,11 +61,14 @@ public class HomeRestController {
 	}
 	
 	//로그인
-	@GetMapping(value = "/loginProcess")
-	public User loginProcess(String id, String pass) {
+	@PostMapping(value = "/loginProcess")
+	public User loginProcess(@RequestBody User user) {
+		System.out.println(user.getId());
+		System.out.println(user.getPass());
+		
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
-		map.put("pass", pass);
+		map.put("id", user.getId());
+		map.put("pass", user.getPass());
 		return uService.login(map);
 	}
 	
@@ -78,19 +83,19 @@ public class HomeRestController {
 	
 	//회원가입
 	@PostMapping(value = "/signUpProcess")
-	public void signUpProcess(User user, HttpSession session) {
+	public void signUpProcess(@RequestBody User user) {
 		uService.registerMember(user);
 	}
 	
 	//회원정보 수정
 	@PostMapping(value = "/modifyinfo")
-	public void modifyInfo(User user, HttpSession session) {
+	public void modifyInfo(@RequestBody User user) {
 		uService.modifyMember(user);
 	}
 	
 	//비밀번호 찾기
 	@PostMapping(value = "/findPass")
-	public User findPass(String name, String id, String tel, HttpSession session) {
+	public User findPass(@RequestBody String name, @RequestBody String id, @RequestBody String tel) {
 		Map<String, String> map = new HashMap<String, String>();
 	    map.put("name", name);
 		map.put("id", id);
@@ -101,7 +106,7 @@ public class HomeRestController {
 	
 	//회원 탈퇴
 	@PostMapping(value = "/dropOut")
-	public void dropOut(User user, HttpSession session) {
+	public void dropOut(@RequestBody User user) {
 		uService.deleteMember(user.getId());
 	}
 	

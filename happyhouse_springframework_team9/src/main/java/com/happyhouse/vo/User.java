@@ -24,6 +24,14 @@ public class User {
 	//constructor
 	public User() {}
 
+	
+	public User(String id, String pass) {
+		super();
+		this.id = id;
+		this.pass = pass;
+	}
+
+
 	public User(String id, String pass, String name, String email, String tel, String office, String car, String pet,
 			String scoreCheck, String zip, String address_base, String address_detail, String office_zip,
 			String office_address_base, String office_address_detail) {
