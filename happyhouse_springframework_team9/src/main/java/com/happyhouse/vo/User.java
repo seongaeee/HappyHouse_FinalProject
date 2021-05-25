@@ -22,6 +22,13 @@ public class User {
 	
 	//constructor
 	public User() {}
+	
+	public User(String name, String id, String tel) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.tel = tel;
+	}
 
 	
 	public User(String id, String pass) {

@@ -106,11 +106,11 @@ public class HomeRestController {
 	
 	//비밀번호 찾기
 	@PostMapping(value = "/findPass")
-	public User findPass(@RequestBody String name, @RequestBody String id, @RequestBody String tel) {
+	public User findPass(@RequestBody User user) {
 		Map<String, String> map = new HashMap<String, String>();
-	    map.put("name", name);
-		map.put("id", id);
-	    map.put("tel", tel);
+	    map.put("name", user.getName());
+		map.put("id", user.getId());
+	    map.put("tel", user.getTel());
 	
 		return uService.findPass(map);
 	}
