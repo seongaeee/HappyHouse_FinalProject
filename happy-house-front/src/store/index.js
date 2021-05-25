@@ -14,6 +14,7 @@ export default new Vuex.Store({
     donglist: [],
     aptlist: [],
     aptdetail: null,
+    checkexist: false,
   },
 
   getters: {
@@ -45,9 +46,25 @@ export default new Vuex.Store({
     aptdetail(state) {
 			return state.aptdetail;
     },
+
+    checkexist(state) {
+      return state.checkexist;
+    }
   },
 
   actions: {
+    CEHCKEXIST : (store, payload) => {
+      axios
+        .get("/getMember/" + payload.id)
+        .then((response) => {
+          store.commit("CEHCKEXIST", { checkexist: response.data });
+          console.log(response.data);
+        })
+        .catch((response) => {
+          console.log(response);
+        });
+    },
+
     DETAIL: (store, payload) => {
       axios
         .get("/detail/" + payload.dong +"/" + payload.aptName)
@@ -189,6 +206,9 @@ export default new Vuex.Store({
     },
     DETAIL: (state, payload) => {
       state.aptdetail = payload.aptdetail;
+    },
+    CEHCKEXIST: (state, payload) => {
+      state.checkexist = payload.checkexist;
     },
 	},
 });
