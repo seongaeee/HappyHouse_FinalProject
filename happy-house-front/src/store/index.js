@@ -63,6 +63,25 @@ export default new Vuex.Store({
   },
 
   actions: {
+    FINDPASS: (store, payload) => {
+			//console.log(payload);
+			axios
+        .post("/findPass", {
+          name: payload.name,
+          id: payload.id,
+          tel: payload.tel,
+        })
+        .then((response) => {
+          if (response.data == "") {
+            store.commit("LOGINFAIL", { check: false });
+          }
+          else {
+            console.log(response.data);
+            store.commit("LOGIN", { user: response.data });
+          }
+				})
+				.catch((exp) => alert("회원정보 찾기에 실패하였습니다." + exp));
+    },
     SIGNUP: (store, payload) => {
 			//console.log(payload);
 			axios

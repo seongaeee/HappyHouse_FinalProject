@@ -1,7 +1,7 @@
 <template>
-  <div id="signup-header">
+  <div id="findpass-header">
 		<img alt="login logo" src="../../assets/login/login.jpg" height="400px"/>
-		<h1>Sign Up</h1>
+		<h1>Find Password</h1>
 	</div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style>
-#signup-header{
+#profile-header{
 	width : 100%;
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;

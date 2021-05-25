@@ -8,7 +8,8 @@ import QnaList from "../components/qna/QnaList.vue";
 import QnaDetail from "../components/qna/QnaDetail.vue";
 import Login from "../components/user/Login.vue";
 import SignUp from "../components/user/SignUp.vue";
-import Profile  from "../components/user/Profile.vue";
+import Profile from "../components/user/Profile.vue";
+import FindPass from "../components/user/FindPass.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,7 @@ const routes = [
   { path: "/login", component: Login },
   { path: "/signup", component: SignUp },
   { path: "/profile", component: Profile },
+  { path: "/findpass", component: FindPass },
   
 
 ];

@@ -39,7 +39,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </b-card>
-        <b-button style="margin-right:1%; width:150px;">비밀번호 찾기</b-button>
+        <router-link to="/findpass"><b-button style="margin-right:1%; width:150px;">비밀번호 찾기</b-button></router-link>
         <b-button @click="loginProcess" style="width:150px;">Login</b-button>
         <div id = "message"></div>
         </b-col>
@@ -81,7 +81,7 @@ import { mapGetters } from "vuex";
         },
         loginResult(){
           if(this.checklogin == false){
-            document.getElementById('message').innerText = "입력 값을 확인해 주세요.";
+            document.getElementById('message').innerText = "아이디와 비밀번호를 확인해 주세요.";
           }else{
             location.href="/";
           }

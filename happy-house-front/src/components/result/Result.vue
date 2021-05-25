@@ -15,7 +15,7 @@
                       :fields="fields"
                       @row-clicked="rowClick"
                       ></b-table>
-                      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
+                      <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center" style="margin-top:2%; margin-bottom:2%;"></b-pagination>
                   </div>
               </b-col>
           <b-col></b-col>
@@ -115,7 +115,7 @@ export default {
 		margin-top: 8%;
 	}
   #result-table{
-    margin-top : 2%;
+    margin-top : 3%;
     margin-bottom : 5%;
   }
 

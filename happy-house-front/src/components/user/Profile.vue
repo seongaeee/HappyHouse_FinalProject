@@ -1,6 +1,6 @@
 <template>
   <div id="profile">
-      <sign-up-header></sign-up-header>
+      <profile-header></profile-header>
       <b-row>
           <b-col cols="3"></b-col>
           <b-col cols="6">
@@ -188,9 +188,9 @@
 </template>  
 
 <script>
-import SignUpHeader from './SignUpHeader.vue'
+import ProfileHeader from './ProfileHeader.vue';
   export default {
-  components: { SignUpHeader },
+  components: { ProfileHeader },
     computed: {
       passState() {
         return this.pass.length > 3 ? true : false;
