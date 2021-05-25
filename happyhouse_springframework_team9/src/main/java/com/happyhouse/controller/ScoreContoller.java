@@ -12,11 +12,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.happyhouse.service.DistService;
@@ -96,20 +101,35 @@ public class ScoreContoller {
         return (rad * 180 / Math.PI);
     }
     
-    @PutMapping(value = "/getPosition")
-    public String getScore(User user) {
+    //사용자 직장 위도 경도
+    public Position getScore(User user) {
     	
+    	JSONObject json;
+    	String officelng="";
+    	String officelat="";
     	
+    	try {
+			json = ( JSONObject ) new JSONParser().parse( getKakaoApiFromAddress(user.getAddress_base()));
+	    	JSONArray jsonDocuments = (JSONArray) json.get( "documents" );
+		    
+	    	
+	    	if( jsonDocuments.size() != 0 ) {
+			  	JSONObject j = (JSONObject) jsonDocuments.get(0);
+			  	officelat = ( String ) j.get( "y" );
+			   	officelng = ( String ) j.get( "x" );
+	    	}
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}
     	
-    	return "점수";
+		Position office = new Position(officelat, officelng);
+		
+    	return office;
     }
     
-    public String getPosition(User user) {
-    	return getKakaoApiFromAddress(user.getAddress_base());
-    }
-
 	//카카오 api를 이용하여 위치의 위도/경도 얻기
-    public String getKakaoApiFromAddress(String roadFullAddr) {
+    @GetMapping(value = "/dist/{roadFullAddr}")
+    public String getKakaoApiFromAddress(@PathVariable String roadFullAddr) {
         String apiKey = "a8cdd5e026f1e687e57278bc3d34aeeb";
         String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
         String jsonString = null;
@@ -145,4 +165,20 @@ public class ScoreContoller {
         }
         return jsonString;
     }
+    
+    //점수 계산
+    public String getScore() {
+		
+    	//매물과 직장 거리 구하기
+    	
+    	
+    	//매물의 공원, 지하철 거리 가져오기
+    	
+    	
+    	//점수 계산
+    	
+    	
+    	return null;
+    }
+    
 }

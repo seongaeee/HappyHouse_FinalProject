@@ -60,6 +60,17 @@ public class HomeRestController {
 		return hService.deepSearch(map);
 	}
 	
+	/*
+	@PostMapping(value ="/detail/{dong}/{aptName}")
+	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName, @RequestBody User user) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("dong", dong);
+		map.put("aptName", aptName);
+		
+		return hService.deepSearch(map);
+	}
+	*/
+	
 	//로그인
 	@PostMapping(value = "/loginProcess")
 	public User loginProcess(@RequestBody User user) {
