@@ -12,5 +12,5 @@ public interface HouseService {
 	public ArrayList<HouseDeal> selectDong(String dong);
 	public HouseInfo deepSearch(Map<String, String> map);
 	public HouseInfo selectNo(String no);
-
+	public void distUpdate(Map<String, String> map); //거리 정보 넣기
 }

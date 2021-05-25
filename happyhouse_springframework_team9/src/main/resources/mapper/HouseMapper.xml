@@ -21,4 +21,8 @@
 	    select * from houseinfo where no = #{no}
 	</select>
 	
+	<update id="distUpdate" parameterType="Map">
+		update houseinfo 
+		set stationDist=#{stationDist}, parkDist=#{parkDist} where no=#{no}
+	</update>
 </mapper>

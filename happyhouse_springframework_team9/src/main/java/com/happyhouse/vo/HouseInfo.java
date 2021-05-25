@@ -11,6 +11,8 @@ public class HouseInfo {
 	private String lat;
 	private String lng;
 	private String img;
+	private String stationDist;
+	private String parkDist;
 	
 	//constructor
 	public HouseInfo() {}
@@ -27,6 +29,22 @@ public class HouseInfo {
 		this.lat = lat;
 		this.lng = lng;
 		this.img = img;
+	}
+
+	public HouseInfo(String no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
+			String lng, String img, String stationDist, String parkDist) {
+		super();
+		this.no = no;
+		this.dong = dong;
+		this.aptName = aptName;
+		this.code = code;
+		this.buildYear = buildYear;
+		this.jibun = jibun;
+		this.lat = lat;
+		this.lng = lng;
+		this.img = img;
+		this.stationDist = stationDist;
+		this.parkDist = parkDist;
 	}
 
 	public String getNo() {
@@ -99,7 +117,22 @@ public class HouseInfo {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public String getStationDist() {
+		return stationDist;
+	}
+
+	public void setStationDist(String stationDist) {
+		this.stationDist = stationDist;
+	}
+
+	public String getParkDist() {
+		return parkDist;
+	}
+
+	public void setParkDist(String parkDist) {
+		this.parkDist = parkDist;
 	}	
-	
 	
 }

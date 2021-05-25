@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.happyhouse.dao.HouseDao;
@@ -41,11 +42,13 @@ public class HomeRestController {
 	@Autowired
 	DistService dService;
 	
+	//동으로 검색
 	@PostMapping(value ="/search/{dong}")
 	public ArrayList<HouseDeal> selectDong(@PathVariable String dong) {
 		return hService.selectDong(dong);
 	}
 	
+	//동과 아파트 이름으로 상세 검색
 	@GetMapping(value ="/detail/{dong}/{aptName}")
 	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -55,21 +58,37 @@ public class HomeRestController {
 		return hService.deepSearch(map);
 	}
 	
-//	@GetMapping(value ="/detail/no/{no}")
-//	public HouseInfo deepSearchNo(@PathVariable String no) {
-//		return hService.selectNo(no);
-//	}
-	
-	@PostMapping(value = "/signUpProcess")
-	public User signUpProcess(User user, HttpSession session) {
-		return uService.getMember(user.getId()); //alreadyExist 체크
+	//로그인
+	@GetMapping(value = "/loginProcess")
+	public User loginProcess(String id, String pass) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pass", pass);
+		return uService.login(map);
 	}
 	
+	//회원 정보 얻기
+	@GetMapping(value = "/getMember/{id}")
+	public boolean getMember(@PathVariable String id) {
+		User user = uService.getMember(id);
+		
+		if(user != null) return true;
+		else return false;
+	}
+	
+	//회원가입
+	@PostMapping(value = "/signUpProcess")
+	public void signUpProcess(User user, HttpSession session) {
+		uService.registerMember(user);
+	}
+	
+	//회원정보 수정
 	@PostMapping(value = "/modifyinfo")
 	public void modifyInfo(User user, HttpSession session) {
 		uService.modifyMember(user);
 	}
 	
+	//비밀번호 찾기
 	@PostMapping(value = "/findPass")
 	public User findPass(String name, String id, String tel, HttpSession session) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -80,13 +99,14 @@ public class HomeRestController {
 		return uService.findPass(map);
 	}
 	
+	//회원 탈퇴
 	@PostMapping(value = "/dropOut")
 	public void dropOut(User user, HttpSession session) {
 		uService.deleteMember(user.getId());
 	}
 	
 	//매물과 공원, 지하철, 직장과의 거리 구하기
-	@GetMapping(value = "/dist")
+	@PutMapping(value = "/dist")
 	public void Dist() {
 		ArrayList<Position> stations = dService.stationSelectAll();
 		ArrayList<Position> parks = dService.parkSelectAll();
@@ -112,7 +132,11 @@ public class HomeRestController {
 			}
 			
 			//매물 DB update
-			
+			Map<String, String> map = new HashMap<String, String>();
+		    map.put("no", house.getNo());
+			map.put("stationDist", Double.toString(stationMindist));
+		    map.put("parkDist", Double.toString(parkMindist));
+		    hService.distUpdate(map);
 		}
 		System.out.println("성공");
 	}

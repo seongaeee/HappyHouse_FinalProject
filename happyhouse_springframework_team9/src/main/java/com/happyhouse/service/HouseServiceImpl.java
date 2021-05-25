@@ -37,8 +37,9 @@ public class HouseServiceImpl implements HouseService{
 	public HouseInfo selectNo(String no) {
 		return dao.selectNo(no);
 	}
-
-
-
+	@Override
+	public void distUpdate(Map<String, String> map) {
+		dao.distUpdate(map);
+	}
 
 }

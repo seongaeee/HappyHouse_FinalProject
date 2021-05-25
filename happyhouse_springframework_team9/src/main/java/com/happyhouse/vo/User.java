@@ -13,6 +13,7 @@ public class User {
 	private String office;
 	private String car;
 	private String pet;
+	private String scoreCheck;
 	
 	//constructor
 	public User() {}
@@ -28,7 +29,7 @@ public class User {
 	}
 
 	public User(String id, String pass, String name, String email, String address, String tel, String office,
-			String car, String pet) {
+			String car, String pet, String scoreCheck) {
 		super();
 		this.id = id;
 		this.pass = pass;
@@ -39,6 +40,7 @@ public class User {
 		this.office = office;
 		this.car = car;
 		this.pet = pet;
+		this.scoreCheck = scoreCheck;
 	}
 
 	//jwt를 위한 comstructor
@@ -116,6 +118,14 @@ public class User {
 
 	public void setPet(String pet) {
 		this.pet = pet;
+	}
+
+	public String getScoreCheck() {
+		return scoreCheck;
+	}
+
+	public void setScoreCheck(String scoreCheck) {
+		this.scoreCheck = scoreCheck;
 	}
 
 }

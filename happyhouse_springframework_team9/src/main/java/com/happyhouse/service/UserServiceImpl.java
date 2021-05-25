@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void registerMember(User user) {
 		dao.registerMember(user);
-
 	}
 
 	@Override
