@@ -16,7 +16,7 @@
                     @row-clicked="rowClick"
                     ></b-table>
                     <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" align="center"></b-pagination>
-                    <b-button variant="primary" @click="writeContent" style="margin-bottom:5%; margin-top:1%">글쓰기</b-button>
+                    <b-button v-if="user!=null" variant="primary" @click="writeContent" style="margin-bottom:5%; margin-top:1%">글쓰기</b-button>
                 </div>
             </b-col>
         <b-col></b-col>
@@ -76,6 +76,9 @@ export default {
     ...mapGetters(["boardlist"]),
     rows() {
       return this.boardlist.length;
+    },
+    user(){
+        return localStorage.id;
     },
   }
 };

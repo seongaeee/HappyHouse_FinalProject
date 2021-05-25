@@ -323,7 +323,7 @@ import SignUpHeader from './SignUpHeader.vue'
           car: this.car,
           pet: this.pet,
         });
-        this.$router.push("/");
+        location.href="/";
       }
     }
 

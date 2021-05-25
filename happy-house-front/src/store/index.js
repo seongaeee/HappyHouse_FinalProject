@@ -84,7 +84,7 @@ export default new Vuex.Store({
         })
 				.then(() => {
           console.log("회원가입 처리하였습니다.");
-          store.commit("LOGIN", { user: payload.data });
+          store.commit("LOGIN", { user: payload });
 				})
 				.catch((exp) => alert("회원가입에 실패하였습니다." + exp));
     },
@@ -100,6 +100,7 @@ export default new Vuex.Store({
             store.commit("LOGINFAIL", { check: false });
           }
           else {
+            console.log(response.data);
             store.commit("LOGIN", { user: response.data });
           }
 				})

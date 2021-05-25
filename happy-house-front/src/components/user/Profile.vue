@@ -14,14 +14,8 @@
         <b-form-input 
         v-model="id" 
         placeholder="Enter your ID"
-        :state="idState"
-        aria-describedby="input-id-feedback"
         disabled
         >{{id}}</b-form-input>
-
-        <b-form-invalid-feedback id="input-id-feedback">
-            ID를 입력해주세요.
-        </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
@@ -198,19 +192,6 @@ import SignUpHeader from './SignUpHeader.vue'
   export default {
   components: { SignUpHeader },
     computed: {
-      idState() {
-        if(this.id.length <= 3) {
-            //document.getElementById('input-id-feedback').innerText = "ID를 입력해주세요.";
-            return false;
-        }
-        else {
-            //document.getElementById('input-id-feedback').innerText = "이미 존재하는 아이디 입니다.";
-            this.$store.dispatch("CEHCKEXIST", {
-              id: this.id,
-            });
-            return !this.$store.state.checkexist;
-        }
-      },
       passState() {
         return this.pass.length > 3 ? true : false;
       },
@@ -305,8 +286,7 @@ import SignUpHeader from './SignUpHeader.vue'
       this.name == ''||
       this.zip == '' ||
       this.address_base == '' ||
-      this.address_detail == '' ||
-      this.$store.state.checkexist){
+      this.address_detail == ''){
         document.getElementById('message').innerText = "입력 값을 확인해 주세요.";
       }else{
         this.$store.dispatch("UPDATEPROFILE", {

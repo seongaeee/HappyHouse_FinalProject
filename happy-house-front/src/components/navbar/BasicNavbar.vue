@@ -41,7 +41,7 @@ export default {
   name: "BasicNavbar",
   computed: {
     user(){
-      return localStorage.id;
+      return localStorage.name;
     },
   },
   methods: {
