@@ -9,7 +9,6 @@ public class User {
 	private String name;
 	private String email;
 	private String tel;
-	private String office;
 	private String car;
 	private String pet;
 	private String scoreCheck;
@@ -32,7 +31,7 @@ public class User {
 	}
 
 
-	public User(String id, String pass, String name, String email, String tel, String office, String car, String pet,
+	public User(String id, String pass, String name, String email, String tel, String car, String pet,
 			String scoreCheck, String zip, String address_base, String address_detail, String office_zip,
 			String office_address_base, String office_address_detail) {
 		super();
@@ -41,7 +40,6 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.tel = tel;
-		this.office = office;
 		this.car = car;
 		this.pet = pet;
 		this.scoreCheck = scoreCheck;
@@ -96,14 +94,6 @@ public class User {
 
 	public void setTel(String tel) {
 		this.tel = tel;
-	}
-
-	public String getOffice() {
-		return office;
-	}
-
-	public void setOffice(String office) {
-		this.office = office;
 	}
 
 	public String getCar() {

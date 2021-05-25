@@ -27,7 +27,6 @@
         label="Password:"
         label-for="password-Input"
         label-cols-sm="3"
-        
       >
         <b-form-input 
         v-model="pass" 
@@ -175,7 +174,8 @@
 
       <hr>
     
-    <b-button style="width:150px; margin-top:3%;">Sign Up</b-button>
+    <b-button style="width:150px; margin-top:3%;" @click="signupProcess">Sign Up</b-button>
+    <div id="message" style="color:red;"></div>
   </b-card>
   
   </b-col>
@@ -221,7 +221,6 @@ import SignUpHeader from './SignUpHeader.vue'
             return this.pass2 == this.pass && this.pass2 != "" ? true : false;
         }
       },
-      
     },
     mounted() {
       const script = document.createElement('script');
@@ -244,6 +243,9 @@ import SignUpHeader from './SignUpHeader.vue'
         office_address_base : "",
         office_address_detail : "",
         scoreCheck: "",
+        car: "",
+        pet: "",
+        
       };
     },
     methods: {
@@ -293,6 +295,37 @@ import SignUpHeader from './SignUpHeader.vue'
         }
       }).open();
     },
+    signupProcess(){
+      if(this.id=='' ||
+      this.pass=='' ||
+      this.pass2=='' ||
+      this.pass != this.pass2 ||
+      this.name == ''||
+      this.zip == '' ||
+      this.address_base == '' ||
+      this.address_detail == '' ||
+      this.$store.state.checkexist){
+        document.getElementById('message').innerText = "입력 값을 확인해 주세요.";
+      }else{
+        this.$store.dispatch("SIGNUP", {
+          id: this.id,
+          pass: this.pass,
+          name: this.name,
+          email: this.email,
+          address_base: this.address_base,
+          address_detail: this.address_detail,
+          zip : this.zip,
+          tel : this.tel,
+          office_zip : this.office_zip,
+          office_address_base : this.address_base,
+          office_address_detail : this.address_detail,
+          scoreCheck: this.scoreCheck,
+          car: this.car,
+          pet: this.pet,
+        });
+        this.$router.push("/");
+      }
+    }
 
   },
   }
@@ -320,4 +353,8 @@ import SignUpHeader from './SignUpHeader.vue'
 		color: #2f3b52;
 		margin : 2%;
 	}
+
+#message{
+  margin: 2%;
+}
 </style>

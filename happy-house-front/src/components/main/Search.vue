@@ -29,14 +29,6 @@
         sido: null,
         gugun : null,
         dong : null,
-        selected1: null,
-        selected2: null,
-        selected3: null,
-        options: [
-          { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option', disabled: true },
-        ]
       }
     },
     created() {

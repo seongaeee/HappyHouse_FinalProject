@@ -13,12 +13,12 @@
 	</select>
 	 
 	<select id="getMember" parameterType="Map" resultType="User">
-		select * from userinfo where id = #{id} and pass = #{pass}
+		select * from userinfo where id = #{id}
 	</select>
 	
 	<update id="modifyMember" parameterType="User">
 		update userinfo 
-		set pass=#{pass}, name=#{name}, email=#{email}, address=#{address}, tel=#{tel}, office=#{office}, car=#{car}, pet=#{pet} where id=#{id}
+		set pass=#{pass}, name=#{name}, email=#{email}, tel=#{tel}, car=#{car}, pet=#{pet}, scoreCheck=#{scoreCheck}, zip=#{zip}, address_base=#{address_base}, address_detail=#{address_detail}, office_zip=#{office_zip}, office_address_base=#{office_address_base}, office_address_detail=#{office_address_detail} where id=#{id}
 	</update>
 	
 	<delete id="deleteMember" parameterType="java.lang.String">

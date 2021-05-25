@@ -15,6 +15,8 @@ export default new Vuex.Store({
     aptlist: [],
     aptdetail: null,
     checkexist: false,
+    checklogin: false,
+    user: null,
   },
 
   getters: {
@@ -49,10 +51,87 @@ export default new Vuex.Store({
 
     checkexist(state) {
       return state.checkexist;
+    },
+
+    user(state) {
+      return state.user;
+    },
+
+    checklogin(state) {
+      return state.checklogin;
     }
   },
 
   actions: {
+    SIGNUP: (store, payload) => {
+			//console.log(payload);
+			axios
+        .post("/signUpProcess", {
+          id: payload.id,
+          pass: payload.pass,
+          name: payload.name,
+          email: payload.email,
+          tel: payload.tel,
+          car: payload.car,
+          pet: payload.pet,
+          scoreCheck: payload.scoreCheck,
+          zip : payload.zip,
+          address_base: payload.address_base,
+          address_detail: payload.address_detail,
+          office_zip : payload.office_zip,
+          office_address_base : payload.address_base,
+          office_address_detail : payload.address_detail,
+        })
+				.then(() => {
+          console.log("회원가입 처리하였습니다.");
+          store.commit("LOGIN", { user: payload.data });
+				})
+				.catch((exp) => alert("회원가입에 실패하였습니다." + exp));
+    },
+    LOGIN: (store, payload) => {
+			//console.log(payload);
+			axios
+        .post("/loginProcess", {
+          id: payload.id,
+          pass: payload.pass,
+        })
+        .then((response) => {
+          if (response.data == "") {
+            store.commit("LOGINFAIL", { check: false });
+          }
+          else {
+            store.commit("LOGIN", { user: response.data });
+          }
+				})
+				.catch((exp) => alert("로그인에 실패하였습니다." + exp));
+    },
+
+    UPDATEPROFILE: (store, payload) => {
+			//console.log(payload);
+			axios
+        .post("/modifyinfo", {
+          id: payload.id,
+          pass: payload.pass,
+          name: payload.name,
+          email: payload.email,
+          tel: payload.tel,
+          car: payload.car,
+          pet: payload.pet,
+          scoreCheck: payload.scoreCheck,
+          zip : payload.zip,
+          address_base: payload.address_base,
+          address_detail: payload.address_detail,
+          office_zip : payload.office_zip,
+          office_address_base : payload.address_base,
+          office_address_detail : payload.address_detail,
+        })
+				.then(() => {
+          console.log("정보를 수정하였습니다.");
+          store.commit("LOGIN", { user: payload });
+				})
+				.catch((exp) => alert("정보 수정에 실패하였습니다." + exp));
+    },
+
     CEHCKEXIST : (store, payload) => {
       axios
         .get("/getMember/" + payload.id)
@@ -209,6 +288,27 @@ export default new Vuex.Store({
     },
     CEHCKEXIST: (state, payload) => {
       state.checkexist = payload.checkexist;
+    },
+    LOGIN: (state, payload) => {
+      state.user = payload.user;
+      localStorage.setItem('id', payload.user.id);
+      localStorage.setItem('name', payload.user.name);
+      localStorage.setItem('email', payload.user.email);
+      localStorage.setItem('tel', payload.user.tel);
+      localStorage.setItem('car', payload.user.car);
+      localStorage.setItem('pet', payload.user.pet);
+      localStorage.setItem('scoreCheck', payload.user.scoreCheck);
+      localStorage.setItem('zip', payload.user.zip);
+      localStorage.setItem('address_base', payload.user.address_base);
+      localStorage.setItem('address_detail', payload.user.address_detail);
+      localStorage.setItem('office_zip', payload.user.office_zip);
+      localStorage.setItem('office_address_base', payload.user.office_address_base);
+      localStorage.setItem('office_address_detail', payload.user.office_address_detail);
+      state.checklogin = true;
+    },
+    LOGINFAIL: (state, payload) => {
+      state.checklogin = payload.check;
+      state.checklogin = false;
     },
 	},
 });
