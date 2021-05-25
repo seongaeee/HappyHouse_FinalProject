@@ -45,12 +45,10 @@ public class ScoreContoller {
 		ArrayList<Position> parks = dService.parkSelectAll();
 		ArrayList<HouseInfo> houses = hService.selectAll();	
 		
-		double parkMindist = Double.MAX_VALUE;
-		double stationMindist = Double.MAX_VALUE;
-		
-		int idx=0;
 		//매물마다 거리 계산
 		for (HouseInfo house : houses) {
+			double parkMindist = Double.MAX_VALUE;
+			double stationMindist = Double.MAX_VALUE;
 			
 			//공원과의 거리 계산하고 가장 가까운 거리 얻기
 			for(Position park : parks) {
