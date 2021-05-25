@@ -5,7 +5,7 @@
    
 <mapper namespace="com.happyhouse.dao.UserDao">
 	<insert id="registerMember" parameterType="User">
-		insert into userinfo values(#{id}, #{pass}, #{name}, #{email}, #{address}, #{tel}, #{office}, #{car}, #{pet}, #{scoreCheck})
+		insert into userinfo values(#{id}, #{pass}, #{name}, #{email}, #{tel}, #{office}, #{car}, #{pet}, #{scoreCheck}, #{zip}, #{address_base}, #{address_detail}, #{office_zip}, #{office_address_base}, #{office_address_detail})
 	</insert>
 	
 	<select id="login" parameterType="Map" resultType="User">
