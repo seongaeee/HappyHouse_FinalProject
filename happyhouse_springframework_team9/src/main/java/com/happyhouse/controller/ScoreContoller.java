@@ -97,10 +97,17 @@ public class ScoreContoller {
     private static double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
     }
-
+    
     @PutMapping(value = "/getPosition")
+    public String getScore(User user) {
+    	
+    	
+    	
+    	return "점수";
+    }
+    
     public String getPosition(User user) {
-    	return getKakaoApiFromAddress(user.getAddress_base()); //수정 필요
+    	return getKakaoApiFromAddress(user.getAddress_base());
     }
 
 	//카카오 api를 이용하여 위치의 위도/경도 얻기
