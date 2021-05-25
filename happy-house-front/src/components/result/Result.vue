@@ -95,6 +95,8 @@ export default {
   },
   methods: {
     rowClick(item) {
+      //첫 호출시 에러가 날 수 있어 미리 채워둔다.
+      this.$store.dispatch("DETAIL", {dong:item.dong, aptName:item.aptName});
       this.$router.push({
         path: `/detail/${item.dong}/${item.aptName}`
       });

@@ -13,17 +13,21 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item><router-link to="/login" style="color:white;">Login</router-link></b-nav-item>
-          <b-nav-item><router-link to="/signup" style="color:white;">Sign Up</router-link></b-nav-item>
-
-          <b-nav-item-dropdown right>
-            <!-- Using 'button-content' slot -->
-            <template #button-content>
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
+          <b-nav-item v-if="user==null">
+            <router-link to="/login" style="color:white;">Login</router-link>
+          </b-nav-item>
+          <b-nav-item class ="nav_item" v-else>
+            <span style="color:white;">{{user}}님 환영합니다</span>
+          </b-nav-item>
+          <b-nav-item v-if="user!=null">
+            <router-link to="/profile" style="color:white;">Profile</router-link>
+          </b-nav-item>
+          <b-nav-item class ="nav_item" v-if="user!=null">
+            <a @click="logoutProcess" style="color:white;" href="#">Logout</a>
+          </b-nav-item>
+          <b-nav-item v-else>
+            <router-link to="/signup" style="color:white;">Sign Up</router-link>
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -35,6 +39,17 @@
 
 export default {
   name: "BasicNavbar",
+  computed: {
+    user(){
+      return localStorage.id;
+    },
+  },
+  methods: {
+    logoutProcess(){
+      localStorage.clear();
+      location.href="/";
+    }
+  },
 }
 </script>
 

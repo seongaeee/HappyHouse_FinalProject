@@ -35,7 +35,7 @@ export default {
       var aptName = this.$route.params.aptName;
 			this.$store.dispatch("DETAIL", {dong:dong, aptName:aptName});
 		},
-  computed: {
+    computed: {
     ...mapGetters(["aptdetail"]),
     items(){
       var items = [
