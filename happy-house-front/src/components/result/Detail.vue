@@ -90,7 +90,7 @@
 			}
 		},
 		mounted() {
-			//this.mapCheck();
+			this.mapCheck();
 		},
 		methods: {
 			getItems() {
