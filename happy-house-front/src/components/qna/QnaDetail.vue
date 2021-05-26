@@ -4,7 +4,7 @@
 	<b-row>
         <b-col></b-col>
         <b-col cols="8">
-			<div>
+			<b-card bg-variant="light" id="sign-card">
 				<br>
 				<div class="content-detail-content-info">
 					<div class="content-detail-content-info-left">
@@ -19,9 +19,9 @@
 				</div>
 				<div class="content-detail-content">{{board.content}}</div>
 				<br>
-				<b-button variant="primary" @click="updateBoard">수정</b-button>&nbsp;
-				<b-button variant="danger" @click="deleteBoard">삭제</b-button>
-			</div>
+				<b-button v-if="id==board.id" variant="primary" @click="updateBoard">수정</b-button>&nbsp;
+				<b-button v-if="id==board.id" variant="danger" @click="deleteBoard">삭제</b-button>
+			</b-card>
 		</b-col>
         <b-col></b-col>
     </b-row>
@@ -42,6 +42,9 @@ import QnaHeader from './QnaHeader.vue';
 			board() {
 				return this.$store.state.board;
 			},
+			id(){
+				return localStorage.getItem('id');
+			}
 		},
 		methods: {
 		deleteBoard() {
@@ -103,5 +106,15 @@ import QnaHeader from './QnaHeader.vue';
   border: 1px solid black;
   margin-top: 1rem;
   padding: 2rem;
+}
+
+#qna-detail{
+    width : 100%;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+    margin-bottom: 4%;
 }
 </style>
