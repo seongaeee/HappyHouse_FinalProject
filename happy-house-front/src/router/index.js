@@ -26,8 +26,6 @@ const routes = [
   { path: "/signup", component: SignUp },
   { path: "/profile", component: Profile },
   { path: "/findpass", component: FindPass },
-  
-
 ];
 
 const router = new VueRouter({
