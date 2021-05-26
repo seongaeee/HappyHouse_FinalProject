@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="Board">
-		insert into board values(null, #{id}, #{title}, #{content}, TO_CHAR(sysdate(), 'YYYY/MM/DD HH24:MI:SS'), 0)
+		insert into board values(null, #{id}, #{title}, #{content}, curdate(), 0)
 	</insert>
 	
 	<update id="update" parameterType="Board">
