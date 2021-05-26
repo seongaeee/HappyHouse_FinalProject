@@ -86,22 +86,17 @@ public class HomeRestController {
 		Map<String, Double> distlist = new HashMap<String, Double>();
 		if(user.getCar().equals("N")) {
 			distlist.put("car",Double.parseDouble(houseinfo.getStationDist()));
-			houseinfo.setStationScore(houseinfo.getStationDist());
 		}
 		if(user.getPet().equals("Y")) {
 			distlist.put("pet",Double.parseDouble(houseinfo.getParkDist()));
-			houseinfo.setParkScore(houseinfo.getParkDist());
 		}
 		if(!user.getOffice_zip().trim().equals("")) {
 			Position office = op.getOfficePosition(user);
 			double officeDist = dc.getDistance(houseinfo, office);
 			distlist.put("office",officeDist);
-			houseinfo.setOfficeScore(Double.toString(officeDist));
 		}
 		
-		houseinfo.setScore(sc.getScore(distlist));
-		
-		return houseinfo;
+		return sc.getScore(distlist, houseinfo);
 	}
 	
 	//로그인
