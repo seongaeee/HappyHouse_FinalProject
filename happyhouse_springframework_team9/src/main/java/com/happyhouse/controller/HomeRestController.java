@@ -90,7 +90,7 @@ public class HomeRestController {
 		}
 		if(user.getPet().equals("Y")) {
 			distlist.put("pet",Double.parseDouble(houseinfo.getParkDist()));
-			houseinfo.setParkDist(houseinfo.getParkDist());
+			houseinfo.setParkScore(houseinfo.getParkDist());
 		}
 		if(!user.getOffice_zip().trim().equals("")) {
 			Position office = op.getOfficePosition(user);
