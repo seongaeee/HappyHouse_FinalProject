@@ -50,7 +50,7 @@
 									</tr>
 									<tr v-if="value!=null">
 										<th scope="row">개인 맞춤 점수</th>
-										<td>{{score}}</td>
+										<td>{{score.toFixed(2)}}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -66,15 +66,44 @@
 					<b-col col="4"></b-col>
 					<b-col col="4">
 						<div
-							id="stars"
+							id="personal-score"
 							v-if="value != null"
 							style="margin-top: 15%"
 						>
-							<h2 class="mt-3">개인 맞춤 점수</h2>
+							<h1 class="mt-3">개인 맞춤 점수</h1>
+
+							<h3 class="mt-5">총점 : {{score.toFixed(2)}} / 10.00</h3>
 							<b-progress :max="10" height="2rem">
 								<b-progress-bar
-									:value="value"
-									:label="`${((value / 10) * 10).toFixed(2)}점`"
+									:value="score"
+									:label="`${(score).toFixed(2)}점 / ${(10).toFixed(2)}점`"
+								></b-progress-bar>
+							</b-progress>
+
+							<h3 class="mt-4" v-if="parkScore != null">공원 : {{parkScore.toFixed(2)}} / {{ratio.toFixed(2)}}</h3>
+							<b-progress :max="ratio" height="2rem" v-if="parkScore != null">
+								<b-progress-bar
+									:value="parkScore"
+									:label="`${((parkScore / 10) * 10).toFixed(2)}점 / ${(ratio).toFixed(2)}점`"
+									variant="success"
+								></b-progress-bar>
+							</b-progress>
+
+							<h3 class="mt-4" v-if="stationScore != null">지하철 {{stationScore.toFixed(2)}} / {{ratio.toFixed(2)}}</h3>
+							<b-progress :max="ratio" height="2rem" v-if="stationScore != null">
+								<b-progress-bar
+									:value="stationScore"
+									:label="`${((stationScore / 10) * 10).toFixed(2)}점 / ${(ratio).toFixed(2)}점`"
+									variant="warning"
+								></b-progress-bar>
+							</b-progress>
+
+							<h3 class="mt-5" v-if="officeScore != null">직주거리 {{officeScore.toFixed(2)}} / {{ratio.toFixed(2)}}</h3>
+							<b-progress :max="ratio" height="2rem" v-if="officeScore != null">
+								<b-progress-bar
+									:value="officeScore"
+									:label="`${((officeScore / 10) * 10).toFixed(2)}점 / ${(ratio).toFixed(2)}점`"
+									variant="info"
 								></b-progress-bar>
 							</b-progress>
 						</div>
@@ -151,6 +180,21 @@
 				if(this.aptdetail.score != null){
 					this.score = this.aptdetail.score;
 				}
+				if(this.aptdetail.stationScore != null){
+					this.stationScore = this.aptdetail.stationScore;
+					this.cnt++;
+				}
+				if(this.aptdetail.parkScore != null){
+					this.parkScore = this.aptdetail.parkScore;
+					this.cnt++;
+				}
+				if(this.aptdetail.officeScore != null){
+					this.officeScore = this.aptdetail.officeScore;
+					this.cnt++;
+				}
+				if(this.aptdetail.score != null){
+					this.ratio = 10 / this.cnt;
+				}
 			},
 			mapCheck() {
 				if (window.kakao && window.kakao.maps) {
@@ -207,6 +251,11 @@
 				lat: null,
 				lng: null,
 				score :null,
+				stationScore : null,
+				parkScore: null,
+				officeScore: null,
+				ratio : null,
+				cnt : 0,
 			};
 		},
 	};
@@ -256,4 +305,11 @@ table.info-table thead th {
 table.info-table .even {
   background: #c5c5c5;
 }
+
+#score-card{
+	background: #cfcfcf;
+	border: none;
+}
+
+
 </style>
