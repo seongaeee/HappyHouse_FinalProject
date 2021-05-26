@@ -8,7 +8,52 @@
 					<b-col cols="5">
 						<div>
 							<h1>매물 정보</h1>
-							<b-table striped hover :items="getItems"></b-table>
+							<table class="info-table">
+								<thead>
+									<tr>
+										<th scope="cols">구분</th>
+										<th scope="cols">정보</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">번호</th>
+										<td>{{no}}</td>
+									</tr>
+									<tr>
+										<th scope="row" class="even">동</th>
+										<td class="even">{{dong}}</td>
+									</tr>
+									<tr>
+										<th scope="row" >아파트</th>
+										<td>{{aptName}}</td>
+									</tr>
+									<tr>
+										<th scope="row" class="even">코드</th>
+										<td class="even">{{code}}</td>
+									</tr>
+									<tr>
+										<th scope="row">건축년도</th>
+										<td>{{buildYear}}</td>
+									</tr>
+									<tr>
+										<th scope="row" class="even">지번</th>
+										<td class="even">{{jibun}}</td>
+									</tr>
+									<tr>
+										<th scope="row">위도</th>
+										<td>{{lat}}</td>
+									</tr>
+									<tr>
+										<th scope="row" class="even">경도</th>
+										<td class="even">{{lng}}</td>
+									</tr>
+									<tr v-if="value!=null">
+										<th scope="row">개인 맞춤 점수</th>
+										<td>{{score}}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</b-col>
 					<b-col cols="5">
@@ -22,7 +67,7 @@
 					<b-col col="4">
 						<div
 							id="stars"
-							v-if="this.aptdetail.score != null"
+							v-if="value != null"
 							style="margin-top: 15%"
 						>
 							<h2 class="mt-3">개인 맞춤 점수</h2>
@@ -74,10 +119,10 @@
 						this.aptdetail = this.$store.state.aptdetail;
             			this.value = this.$store.state.aptdetail.score;
 						this.mapCheck();
+						this.getItems();
 					});
 			} else {
 				//일단 로그인 안한 경우만 처리
-
 				this.$store
 					.dispatch("DETAIL", {
 						dong: this.dong,
@@ -86,49 +131,31 @@
 					.then(() => {
 						this.aptdetail = this.$store.state.aptdetail;
 						this.mapCheck();
+						this.getItems();
 					});
 			}
 		},
 		mounted() {
-			this.mapCheck();
+			//this.mapCheck();
 		},
 		methods: {
 			getItems() {
-				var items1 = [
-					{ 구분: "번호", 정보: this.$store.state.aptdetail.no },
-					{ 구분: "동", 정보: this.aptdetail.dong },
-					{ 구분: "아파트", 정보: this.aptdetail.aptName },
-					{ 구분: "코드", 정보: this.aptdetail.code },
-					{ 구분: "건축년도", 정보: this.aptdetail.buildYear },
-					{ 구분: "지번", 정보: this.aptdetail.jibun },
-					{ 구분: "위도", 정보: this.aptdetail.lat },
-					{ 구분: "경도", 정보: this.aptdetail.lng },
-				];
-
-				var items2 = [
-					{ 구분: "번호", 정보: this.aptdetail.no },
-					{ 구분: "동", 정보: this.aptdetail.dong },
-					{ 구분: "아파트", 정보: this.aptdetail.aptName },
-					{ 구분: "코드", 정보: this.aptdetail.code },
-					{ 구분: "건축년도", 정보: this.aptdetail.buildYear },
-					{ 구분: "지번", 정보: this.aptdetail.jibun },
-					{ 구분: "위도", 정보: this.aptdetail.lat },
-					{ 구분: "경도", 정보: this.aptdetail.lng },
-					{ 구분: "점수", 정보: this.aptdetail.score },
-				];
-
-				if (this.aptdetail.score == null) {
-					return items1;
-				} else {
-					return items2;
+				this.no = this.aptdetail.no;
+				this.dong = this.aptdetail.dong;
+				this.aptName = this.aptdetail.aptName;
+				this.code = this.aptdetail.code;
+				this.buildYear = this.aptdetail.buildYear;
+				this.jibun = this.aptdetail.jibun;
+				this.lat = this.aptdetail.lat;
+				this.lng = this.aptdetail.lng;
+				if(this.aptdetail.score != null){
+					this.score = this.aptdetail.score;
 				}
 			},
 			mapCheck() {
 				if (window.kakao && window.kakao.maps) {
-					alert("second");
 					this.initMap();
 				} else {
-					alert("first");
 					const script = document.createElement("script");
 					/* global kakao */
 					script.onload = () => kakao.maps.load(this.initMap);
@@ -147,7 +174,7 @@
 						level: 3, // 지도의 확대 레벨
 					};
 
-				var map2 = new kakao.maps.Map(mapContainer, mapOption);
+				var map = new kakao.maps.Map(mapContainer, mapOption);
 
 				var markerPosition = new kakao.maps.LatLng(
 					this.aptdetail.lat,
@@ -156,23 +183,30 @@
 				var marker = new kakao.maps.Marker({
 					position: markerPosition,
 				});
-				marker.setMap(map2);
-				console.log(map2);
+				marker.setMap(map);
 			},
 		},
 		data() {
 			return {
 				aptdetail: null,
 				max: 10,
-				dong: "",
-				aptName: "",
 				id: "",
 				car: "",
 				pet: "",
 				scoreCheck: "",
 				office_address_base: "",
 				office_zip: "",
-        		value: "",
+				items: null,
+        		value: null,
+				no: null,
+				dong: null,
+				aptName: null,
+				code: null,
+				buildYear: null,
+				jibun: null,
+				lat: null,
+				lng: null,
+				score :null,
 			};
 		},
 	};
@@ -199,4 +233,27 @@
 		margin-top: 2%;
 		margin-bottom: 5%;
 	}
+
+	table.info-table {
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 3;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  height: 30%;
+}
+table.info-table thead th {
+  width: 45%;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+  background: #6c757d;
+  margin: 20px 10px;
+}
+
+table.info-table .even {
+  background: #c5c5c5;
+}
 </style>
