@@ -13,10 +13,10 @@ public class ScoreCalculation {
     	double ratio = 0; //비율
     	int mapsize = map.size();
     	if(mapsize==0) {
-    		houseinfo.setScore("10");
-    		houseinfo.setStationScore("3.3");
-    		houseinfo.setParkScore("3.3");
-    		houseinfo.setOfficeScore("3.3");
+    		houseinfo.setScore(10.0);
+    		houseinfo.setStationScore(3.3);
+    		houseinfo.setParkScore(3.3);
+    		houseinfo.setOfficeScore(3.3);
     		return houseinfo;
     	}
     	if(mapsize==1) ratio=1;
@@ -27,25 +27,25 @@ public class ScoreCalculation {
 			if(map.get("car")<=1) { //1km 이하
 				double scoreStation = (10 - (map.get("car")*10)/1) * ratio; 
 				score += scoreStation;
-				houseinfo.setStationScore(Double.toString(scoreStation));
+				houseinfo.setStationScore(scoreStation);
 			}
 		}
 		if(map.get("pet")!=null) {
 			if(map.get("pet")<=2) { //2km 이하
 				double scorePark = (10 - (map.get("pet")*10)/2) * ratio; 
 				score += scorePark;
-				houseinfo.setParkScore(Double.toString(scorePark));
+				houseinfo.setParkScore(scorePark);
 			}			
 		}
 		if(map.get("office")!=null) {
 			if(map.get("office")<=20) { //20km 이하
 				double scoreOffice = (10 - (map.get("office")*10)/20) * ratio;
 				score += scoreOffice;
-				houseinfo.setOfficeScore(Double.toString(scoreOffice));
+				houseinfo.setOfficeScore(scoreOffice);
 			}			
 		}
 		
-		houseinfo.setScore(Double.toString(score));
+		houseinfo.setScore(score);
 		
 		
     	return houseinfo;

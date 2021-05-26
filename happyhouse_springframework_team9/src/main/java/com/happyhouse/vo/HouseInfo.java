@@ -13,10 +13,10 @@ public class HouseInfo {
 	private String img;
 	private String stationDist;
 	private String parkDist;
-	private String score;
-	private String stationScore;
-	private String parkScore;
-	private String officeScore;
+	private Double score;
+	private Double stationScore;
+	private Double parkScore;
+	private Double officeScore;
 	
 	//constructor
 	public HouseInfo() {}
@@ -38,8 +38,8 @@ public class HouseInfo {
 	}
 	
 	public HouseInfo(String no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
-			String lng, String img, String stationDist, String parkDist, String score, String stationScore,
-			String parkScore, String officeScore) {
+			String lng, String img, String stationDist, String parkDist, Double score, Double stationScore,
+			Double parkScore, Double officeScore) {
 		super();
 		this.no = no;
 		this.dong = dong;
@@ -146,36 +146,36 @@ public class HouseInfo {
 		this.parkDist = parkDist;
 	}
 
-	public String getScore() {
+	public Double getScore() {
 		return score;
 	}
 
-	public void setScore(String score) {
+	public void setScore(Double score) {
 		this.score = score;
 	}
 
-	public String getStationScore() {
+	public Double getStationScore() {
 		return stationScore;
 	}
 
-	public void setStationScore(String stationScore) {
+	public void setStationScore(Double stationScore) {
 		this.stationScore = stationScore;
 	}
 
-	public String getParkScore() {
+	public Double getParkScore() {
 		return parkScore;
 	}
 
-	public void setParkScore(String parkScore) {
+	public void setParkScore(Double parkScore) {
 		this.parkScore = parkScore;
 	}
 
-	public String getOfficeScore() {
+	public Double getOfficeScore() {
 		return officeScore;
 	}
 
-	public void setOfficeScore(String officeScore) {
+	public void setOfficeScore(Double officeScore) {
 		this.officeScore = officeScore;
-	}	
-	
+	}
+
 }
