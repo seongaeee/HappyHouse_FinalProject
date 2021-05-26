@@ -66,7 +66,7 @@ public class User {
 	}
 	
 	
-	//jwt를 위한 comstructor
+	//jwt를 위한 생성자
 	public SessionUser makeSessionUser() {
 		return new SessionUser(this.id, this.pass);
 	}
