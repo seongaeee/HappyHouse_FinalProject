@@ -47,6 +47,7 @@ public class ScoreCalculation {
 		
 		houseinfo.setScore(Double.toString(score));
 		
+		
     	return houseinfo;
     }
 }
