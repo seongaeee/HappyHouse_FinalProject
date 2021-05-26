@@ -56,13 +56,14 @@ public class User {
 	}
 
 	//점수계산을 위한 생성자
-	public User(String id, String car, String pet, String scoreCheck, String office_address_base) {
+	public User(String id, String car, String pet, String scoreCheck, String office_address_base, String office_zip) {
 		super();
 		this.id = id;
 		this.car = car;
 		this.pet = pet;
 		this.scoreCheck = scoreCheck;
 		this.office_address_base = office_address_base;
+		this.office_zip = office_zip;
 	}
 	
 	

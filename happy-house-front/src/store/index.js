@@ -15,6 +15,7 @@ export default new Vuex.Store({
     aptlist: [],
     aptdetail: null,
     checkexist: false,
+    checkmember: false,
     checklogin: false,
     user: null,
   },
@@ -59,10 +60,53 @@ export default new Vuex.Store({
 
     checklogin(state) {
       return state.checklogin;
+    },
+
+    checkmember(state) {
+      return state.checkmember;
     }
   },
 
   actions: {
+    DROPOUT: (store, payload) => {
+			//console.log(payload);
+			return axios
+        .post("/dropOut", {
+          id: payload.id,
+          pass: payload.pass,
+        })
+        .then(() => {
+          localStorage.clear();
+          store.commit("LOGINFAIL", { check: false });
+				})
+				.catch((exp) => alert("존재하는 회원탈퇴에 실패하였습니다." + exp));
+    },
+    CHECKMEMBER: (store, payload) => {
+			//console.log(payload);
+			return axios
+        .post("/loginProcess", {
+        id: payload.id,
+        pass: payload.pass,
+        })
+        .then((response) => {
+          if (response.data == "") {
+            store.commit("CHECKMEMBER", { check: false });
+          }
+          else {
+            axios
+              .post("/dropOut", {
+                id: payload.id,
+                pass: payload.pass,
+              })
+              .then(() => {
+                localStorage.clear();
+                location.href = "/";
+              })
+              .catch((exp) => alert("회원탈퇴에 실패하였습니다." + exp));
+          }
+				})
+				.catch((exp) => alert("존재하는 회원정보 불러오기에 실패하였습니다." + exp));
+    },
     FINDPASS: (store, payload) => {
 			//console.log(payload);
 			axios
@@ -109,7 +153,7 @@ export default new Vuex.Store({
     },
     LOGIN: (store, payload) => {
 			//console.log(payload);
-			axios
+			return axios
         .post("/loginProcess", {
           id: payload.id,
           pass: payload.pass,
@@ -164,16 +208,35 @@ export default new Vuex.Store({
         });
     },
 
+    UPGRADEDETAIL: (store, payload) => {
+      axios
+         .post("/detail/" + payload.dong + "/" + payload.aptName, {
+           id : payload.id,
+           car : payload.car,
+           pet : payload.pet,
+           scoreCheck : payload.scoreCheck,
+           office_address_base: payload.office_address_base,
+           office_zip: payload.office_zip,
+         })
+         .then((response) => {
+           store.commit("UPGRADEDETAIL", { aptdetail: response.data });
+           console.log(response.data);
+         })
+         .catch((response) => {
+           console.log(response);
+         });
+    },
+
     DETAIL: (store, payload) => {
       axios
-        .get("/detail/" + payload.dong +"/" + payload.aptName)
+         .get("/detail/" + payload.dong + "/" + payload.aptName)
         .then((response) => {
-          store.commit("DETAIL", { aptdetail: response.data });
-          console.log(response.data);
-        })
-        .catch((response) => {
-          console.log(response);
-        });
+           store.commit("DETAIL", { aptdetail: response.data });
+           console.log(response.data);
+         })
+         .catch((response) => {
+           console.log(response);
+         });      
     },
 
     SEARCH: (store, payload) => {
@@ -306,6 +369,9 @@ export default new Vuex.Store({
     DETAIL: (state, payload) => {
       state.aptdetail = payload.aptdetail;
     },
+    UPGRADEDETAIL: (state, payload) => {
+      state.aptdetail = payload.aptdetail;
+    },
     CEHCKEXIST: (state, payload) => {
       state.checkexist = payload.checkexist;
     },
@@ -328,7 +394,9 @@ export default new Vuex.Store({
     },
     LOGINFAIL: (state, payload) => {
       state.checklogin = payload.check;
-      state.checklogin = false;
+    },
+    CHECKMEMBER: (state, payload) => {
+      state.checkmember = payload.check;
     },
 	},
 });

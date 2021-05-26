@@ -4,7 +4,7 @@
       <b-row>
           <b-col cols="3"></b-col>
           <b-col cols="6">
-  <b-card bg-variant="light" id="sign-card">
+      <b-card bg-variant="light" id="sign-card">
     
       <b-form-group
         label="ID:"
@@ -177,6 +177,7 @@
     
     <b-button style="width:150px; margin:3%;" @click="updateProcess">수정하기</b-button>
     <b-button style="width:150px; margin:3%;" @click="goToMain">메인으로</b-button>
+    <b-button style="width:150px; margin:3%;" @click="dropOut" variant="danger">회원탈퇴</b-button>
     <div id="message" style="color:red;"></div>
   </b-card>
   
@@ -310,8 +311,34 @@ import ProfileHeader from './ProfileHeader.vue';
     },
     goToMain(){
         this.$router.push("/");
-    }
+    },
+    dropOut(){
+      if(this.pass=='' ||
+        this.pass2=='' ||
+        this.pass != this.pass2){
+          document.getElementById('message').innerText = "비밀번호를 입력해 주세요.";
+      }
 
+      this.$store.dispatch("CHECKMEMBER", {
+          id : this.id,
+          pass : this.pass,
+      }).then(()=>{
+          this.dropOutProcess();
+      });
+    },
+    dropOutProcess(){
+      if(this.$store.state.checkmember){
+        this.$store.dispatch("DROPOUT", {
+            id : this.id,
+            pass : this.pass,
+        }).then(()=>{
+          location.href="/";
+        });
+      }
+      else{
+          document.getElementById('message').innerText = "입력 값을 확인해 주세요.";
+      }
+    }
   },
   }
 </script>

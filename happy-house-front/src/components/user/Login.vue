@@ -74,10 +74,9 @@ import { mapGetters } from "vuex";
           this.$store.dispatch("LOGIN", {
             id: this.id,
             pass: this.pass,
-          });
-          setTimeout(() => {
+          }).then(() => {
             this.loginResult();
-          }, 100);
+          });
         },
         loginResult(){
           if(this.checklogin == false){

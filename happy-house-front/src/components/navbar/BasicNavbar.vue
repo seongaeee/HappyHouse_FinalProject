@@ -1,6 +1,6 @@
 <template>
-  <div id="nav">
-    <b-navbar toggleable="lg" type="dark" variant="secondary">
+  <div id="nav-id">
+    <b-navbar toggleable="lg" type="dark" variant="secondary" id="navbar">
       <b-navbar-brand><router-link to="/" style="color:white;">HappyHouse Team9</router-link></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -41,7 +41,7 @@ export default {
   name: "BasicNavbar",
   computed: {
     user(){
-      return localStorage.name;
+      return localStorage.id;
     },
   },
   methods: {
@@ -55,10 +55,11 @@ export default {
 
 <style>
 
-#nav{
+#nav-id{
   width : 100%;
   position: fixed;
   z-index: 1;
 }
+
 
 </style>

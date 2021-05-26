@@ -72,6 +72,7 @@ public class HomeRestController {
 	@PostMapping(value ="/detail/{dong}/{aptName}")
 	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName, @RequestBody User user) {
 		
+		System.out.println(user.getId());
 		//1. 기존 HouseInfo 얻기
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("dong", dong);
