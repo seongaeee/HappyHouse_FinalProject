@@ -23,5 +23,5 @@ public class DistServiceImpl implements DistService {
 	public ArrayList<Position> parkSelectAll() {
 		return dao.parkSelectAll();
 	}
-
+	
 }

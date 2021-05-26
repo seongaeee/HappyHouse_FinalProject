@@ -13,23 +13,10 @@ public class HouseInfo {
 	private String img;
 	private String stationDist;
 	private String parkDist;
+	private String score;
 	
 	//constructor
 	public HouseInfo() {}
-
-	public HouseInfo(String no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
-			String lng, String img) {
-		super();
-		this.no = no;
-		this.dong = dong;
-		this.aptName = aptName;
-		this.code = code;
-		this.buildYear = buildYear;
-		this.jibun = jibun;
-		this.lat = lat;
-		this.lng = lng;
-		this.img = img;
-	}
 
 	public HouseInfo(String no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
 			String lng, String img, String stationDist, String parkDist) {
@@ -45,6 +32,23 @@ public class HouseInfo {
 		this.img = img;
 		this.stationDist = stationDist;
 		this.parkDist = parkDist;
+	}
+	
+	public HouseInfo(String no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
+			String lng, String img, String stationDist, String parkDist, String score) {
+		super();
+		this.no = no;
+		this.dong = dong;
+		this.aptName = aptName;
+		this.code = code;
+		this.buildYear = buildYear;
+		this.jibun = jibun;
+		this.lat = lat;
+		this.lng = lng;
+		this.img = img;
+		this.stationDist = stationDist;
+		this.parkDist = parkDist;
+		this.score = score;
 	}
 
 	public String getNo() {
@@ -133,6 +137,14 @@ public class HouseInfo {
 
 	public void setParkDist(String parkDist) {
 		this.parkDist = parkDist;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public void setScore(String score) {
+		this.score = score;
 	}	
 	
 }

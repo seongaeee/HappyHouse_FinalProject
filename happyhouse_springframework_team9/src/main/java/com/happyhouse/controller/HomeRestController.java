@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.happyhouse.dao.HouseDao;
+import com.happyhouse.score.DistCalculation;
+import com.happyhouse.score.OfficePosition;
+import com.happyhouse.score.ScoreCalculation;
 import com.happyhouse.service.DistService;
 import com.happyhouse.service.HouseService;
 import com.happyhouse.service.UserService;
@@ -44,6 +47,10 @@ public class HomeRestController {
 	@Autowired
 	DistService dService;
 	
+	OfficePosition op = new OfficePosition();
+	DistCalculation dc = new DistCalculation();
+	ScoreCalculation sc = new ScoreCalculation();
+	
 	//동으로 검색
 	@PostMapping(value ="/search/{dong}")
 	public ArrayList<HouseDeal> selectDong(@PathVariable String dong) {
@@ -51,25 +58,35 @@ public class HomeRestController {
 	}
 	
 	//동과 아파트 이름으로 상세 검색
-	@GetMapping(value ="/detail/{dong}/{aptName}")
-	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("dong", dong);
-		map.put("aptName", aptName);
-		
-		return hService.deepSearch(map);
-	}
-	
-	/*
 	@PostMapping(value ="/detail/{dong}/{aptName}")
 	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName, @RequestBody User user) {
+		
+		//1. 기존 HouseInfo 얻기
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("dong", dong);
 		map.put("aptName", aptName);
+		HouseInfo houseinfo = hService.deepSearch(map);
 		
-		return hService.deepSearch(map);
+		//2-1. 점수 기능 제공x
+		if(user.getScoreCheck().equals("N")) return hService.deepSearch(map);
+		
+		//2-2. 점수 기능 제공o
+		Map<String, Double> distlist = new HashMap<String, Double>();
+		if(user.getCar().equals("N")) {
+			distlist.put("car",Double.parseDouble(houseinfo.getStationDist()));
+		}
+		if(user.getPet().equals("Y")) {
+			distlist.put("pet",Double.parseDouble(houseinfo.getParkDist()));
+		}
+		if(!user.getOffice_zip().trim().equals("")) {
+			Position office = op.getOfficePosition(user);
+			distlist.put("office",dc.getDistance(houseinfo, office));
+		}
+		
+		houseinfo.setScore(sc.getScore(distlist));
+		
+		return houseinfo;
 	}
-	*/
 	
 	//로그인
 	@PostMapping(value = "/loginProcess")

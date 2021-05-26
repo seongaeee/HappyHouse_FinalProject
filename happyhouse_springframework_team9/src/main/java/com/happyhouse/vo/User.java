@@ -19,7 +19,6 @@ public class User {
 	private String office_address_base;
 	private String office_address_detail;
 	
-	
 	//constructor
 	public User() {}
 	
@@ -29,14 +28,12 @@ public class User {
 		this.id = id;
 		this.tel = tel;
 	}
-
 	
 	public User(String id, String pass) {
 		super();
 		this.id = id;
 		this.pass = pass;
 	}
-
 
 	public User(String id, String pass, String name, String email, String tel, String car, String pet,
 			String scoreCheck, String zip, String address_base, String address_detail, String office_zip,
@@ -58,10 +55,22 @@ public class User {
 		this.office_address_detail = office_address_detail;
 	}
 
+	//점수계산을 위한 생성자
+	public User(String id, String car, String pet, String scoreCheck, String office_address_base) {
+		super();
+		this.id = id;
+		this.car = car;
+		this.pet = pet;
+		this.scoreCheck = scoreCheck;
+		this.office_address_base = office_address_base;
+	}
+	
+	
 	//jwt를 위한 comstructor
 	public SessionUser makeSessionUser() {
 		return new SessionUser(this.id, this.pass);
 	}
+
 
 	public String getId() {
 		return id;
