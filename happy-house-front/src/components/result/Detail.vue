@@ -46,39 +46,43 @@ import DetailHeader from '../header/DetailHeader.vue';
 export default {
   components: { DetailHeader },
     created() {
-      var dong = this.$route.params.dong;
-      var aptName = this.$route.params.aptName;
-      var id = localStorage.id;
-      var car = localStorage.car;
-      var pet = localStorage.pet;
-      var scoreCheck = localStorage.scoreCheck;
-      var office_address_base =  localStorage.office_address_base;
-      var office_zip = localStorage.office_zip;
+      this.dong = this.$route.params.dong;
+      this.aptName = this.$route.params.aptName;
+      this.id = localStorage.id;
+      this.car = localStorage.car;
+      this.pet = localStorage.pet;
+      this.scoreCheck = localStorage.scoreCheck;
+      this.office_address_base =  localStorage.office_address_base;
+      this.office_zip = localStorage.office_zip;
 
-      if(id != null){
+      if(this.id != null){
         this.$store.dispatch("UPGRADEDETAIL", {
-          dong : dong, 
-          aptName : aptName,
-          id : id,
-          car : car,
-          pet : pet,
-          scoreCheck : scoreCheck,
-          office_address_base : office_address_base,
-          office_zip : office_zip,
+          dong : this.dong, 
+          aptName : this.aptName,
+          id : this.id,
+          car : this.car,
+          pet : this.pet,
+          scoreCheck : this.scoreCheck,
+          office_address_base : this.office_address_base,
+          office_zip : this.office_zip,
+        }).then(()=>{
+          this.mapCheck();
         });
       }
       else{
         this.$store.dispatch("DETAIL", {
-          dong : dong, 
-          aptName : aptName,
+          dong : this.dong, 
+          aptName : this.aptName,
+        }).then(()=>{
+          this.mapCheck();
         });
       }
-		},
+        },
     computed: {
     ...mapGetters(["aptdetail"]),
     items(){
       var items1 = [
-          { 구분 : '번호', 정보: this.aptdetail.no},
+          { 구분 : '번호', 정보: this.saptdetail.no},
           { 구분 : '동', 정보: this.aptdetail.dong},
           { 구분 : '아파트', 정보: this.aptdetail.aptName},
           { 구분 : '코드', 정보: this.aptdetail.code},
@@ -111,18 +115,21 @@ export default {
     }
   },
   mounted() {
-    if (window.kakao && window.kakao.maps) {
-      this.initMap();
-    } else {
-      const script = document.createElement('script');
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=242fb4c309b28366b554b85bdd482fc5';
-      document.head.appendChild(script);
-    }
+    this.mapCheck();
   },
   methods: {
+    mapCheck(){
+      if (window.kakao && window.kakao.maps) {
+        this.initMap();
+      } else {
+        const script = document.createElement('script');
+        /* global kakao */
+        script.onload = () => kakao.maps.load(this.initMap);
+        script.src =
+          'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=242fb4c309b28366b554b85bdd482fc5';
+        document.head.appendChild(script);
+      }
+    },
     initMap() {
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
           mapOption = {
@@ -130,19 +137,27 @@ export default {
             level: 3, // 지도의 확대 레벨
           };
 
-      var map2 = new kakao.maps.Map(mapContainer, mapOption);
+            var map2 = new kakao.maps.Map(mapContainer, mapOption);
 
             var markerPosition  = new kakao.maps.LatLng(this.aptdetail.lat, this.aptdetail.lng); 
             var marker = new kakao.maps.Marker({
                  position: markerPosition
             });
             marker.setMap(map2);
-      console.log(map2);
+          console.log(map2);
     }
   },
   data() {
     return {
       max : 10,
+      dong : "",
+      aptName : "",
+      id : "",
+      car : "",
+      pet : "",
+      scoreCheck : "",
+      office_address_base : "",
+      office_zip : "",
     }
   },
 }
@@ -150,22 +165,22 @@ export default {
 
 <style>
 #detail{
-	width : 100%;
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
+    width : 100%;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
 
-	}
-	h1 {
-		color: #2f3b52;
-		font-weight: 900;
-		margin: 2.5rem 0 1.5rem;
-	}
-	img{
-		margin-top: 8%;
-	}
+    }
+    h1 {
+        color: #2f3b52;
+        font-weight: 900;
+        margin: 2.5rem 0 1.5rem;
+    }
+    img{
+        margin-top: 8%;
+    }
   #field{
     margin-top : 2%;
     margin-bottom: 5%;

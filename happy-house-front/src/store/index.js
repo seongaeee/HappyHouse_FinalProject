@@ -209,7 +209,7 @@ export default new Vuex.Store({
     },
 
     UPGRADEDETAIL: (store, payload) => {
-      axios
+      return axios
          .post("/detail/" + payload.dong + "/" + payload.aptName, {
            id : payload.id,
            car : payload.car,
@@ -228,7 +228,7 @@ export default new Vuex.Store({
     },
 
     DETAIL: (store, payload) => {
-      axios
+      return axios
          .get("/detail/" + payload.dong + "/" + payload.aptName)
         .then((response) => {
            store.commit("DETAIL", { aptdetail: response.data });

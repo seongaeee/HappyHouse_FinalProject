@@ -100,6 +100,7 @@ export default {
       this.$router.push({
         path: `/detail/${item.dong}/${item.aptName}`
       });
+      
     },
   },
 }
