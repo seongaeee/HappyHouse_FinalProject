@@ -19,6 +19,21 @@
           <b-col col="1">
           </b-col>
         </b-row>
+        <b-row>
+          <b-col col="4"></b-col>
+            <b-col col="4">
+              <div id="stars" v-if="this.aptdetail.score != null" style="margin-top:15%">
+                <h2 class="mt-3">개인 맞춤 점수</h2>
+                  <b-progress :max="10" height="2rem">
+                    <b-progress-bar :value="value" :label="`${((value / 10) * 10).toFixed(2)}점`"></b-progress-bar>
+                  </b-progress>
+              
+              </div>
+            </b-col>
+          <b-col col="4"></b-col>
+        </b-row>
+
+
       </div>
     </section>
   </div>
@@ -33,12 +48,36 @@ export default {
     created() {
       var dong = this.$route.params.dong;
       var aptName = this.$route.params.aptName;
-			this.$store.dispatch("DETAIL", {dong:dong, aptName:aptName});
+      var id = localStorage.id;
+      var car = localStorage.car;
+      var pet = localStorage.pet;
+      var scoreCheck = localStorage.scoreCheck;
+      var office_address_base =  localStorage.office_address_base;
+      var office_zip = localStorage.office_zip;
+
+      if(id != null){
+        this.$store.dispatch("UPGRADEDETAIL", {
+          dong : dong, 
+          aptName : aptName,
+          id : id,
+          car : car,
+          pet : pet,
+          scoreCheck : scoreCheck,
+          office_address_base : office_address_base,
+          office_zip : office_zip,
+        });
+      }
+      else{
+        this.$store.dispatch("DETAIL", {
+          dong : dong, 
+          aptName : aptName,
+        });
+      }
 		},
     computed: {
     ...mapGetters(["aptdetail"]),
     items(){
-      var items = [
+      var items1 = [
           { 구분 : '번호', 정보: this.aptdetail.no},
           { 구분 : '동', 정보: this.aptdetail.dong},
           { 구분 : '아파트', 정보: this.aptdetail.aptName},
@@ -48,7 +87,27 @@ export default {
           { 구분 : '위도', 정보: this.aptdetail.lat},
           { 구분 : '경도', 정보: this.aptdetail.lng},
         ];
-      return items;
+
+      var items2 = [
+          { 구분 : '번호', 정보: this.aptdetail.no},
+          { 구분 : '동', 정보: this.aptdetail.dong},
+          { 구분 : '아파트', 정보: this.aptdetail.aptName},
+          { 구분 : '코드', 정보: this.aptdetail.code},
+          { 구분 : '건축년도', 정보: this.aptdetail.buildYear},
+          { 구분 : '지번', 정보: this.aptdetail.jibun},
+          { 구분 : '위도', 정보: this.aptdetail.lat},
+          { 구분 : '경도', 정보: this.aptdetail.lng},
+          { 구분 : '점수', 정보: this.aptdetail.score},
+        ];
+
+      if(this.aptdetail.score == null){
+        return items1;
+      }else{
+        return items2;
+      }
+    },
+    value(){
+      return this.aptdetail.score;
     }
   },
   mounted() {
@@ -79,6 +138,11 @@ export default {
             });
             marker.setMap(map2);
       console.log(map2);
+    }
+  },
+  data() {
+    return {
+      max : 10,
     }
   },
 }
