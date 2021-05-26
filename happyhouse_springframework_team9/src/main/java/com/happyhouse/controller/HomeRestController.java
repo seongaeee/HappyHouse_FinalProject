@@ -57,7 +57,18 @@ public class HomeRestController {
 		return hService.selectDong(dong);
 	}
 	
-	//동과 아파트 이름으로 상세 검색
+	//동과 아파트 이름으로 상세 검색 - 로그인x
+	@GetMapping(value ="/detail/{dong}/{aptName}")
+	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName) {
+		
+		//1. 기존 HouseInfo 얻기
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("dong", dong);
+		map.put("aptName", aptName);
+		return hService.deepSearch(map);
+	}
+	
+	//동과 아파트 이름으로 상세 검색 - 로그인o
 	@PostMapping(value ="/detail/{dong}/{aptName}")
 	public HouseInfo deepSearch(@PathVariable String dong, @PathVariable String aptName, @RequestBody User user) {
 		
