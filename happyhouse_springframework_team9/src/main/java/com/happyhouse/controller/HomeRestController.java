@@ -80,11 +80,11 @@ public class HomeRestController {
 		HouseInfo houseinfo = hService.deepSearch(map);
 		
 		//2-1. 점수 기능 제공x
-		if(user.getScoreCheck().equals("N")) return hService.deepSearch(map);
+		if(user.getScoreCheck() == null || user.getScoreCheck().equals("N")) return hService.deepSearch(map);
 		
 		//2-2. 점수 기능 제공o
 		Map<String, Double> distlist = new HashMap<String, Double>();
-		if(user.getCar().equals("N")) {
+		if(user.getCar() != null && user.getCar().equals("N")) { //수정해야함
 			distlist.put("car",Double.parseDouble(houseinfo.getStationDist()));
 		}
 		if(user.getPet().equals("Y")) {
