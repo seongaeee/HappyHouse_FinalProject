@@ -98,7 +98,7 @@
                 ></b-progress-bar>
               </b-progress>
 
-              <h3 class="mt-5" v-if="officeScore != null">
+              <h3 class="mt-4" v-if="officeScore != null">
                 직주거리 {{ officeScore.toFixed(2) }} / {{ ratio.toFixed(2) }}
               </h3>
               <b-progress :max="ratio" height="2rem" v-if="officeScore != null">
