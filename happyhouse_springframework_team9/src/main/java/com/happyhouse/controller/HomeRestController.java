@@ -126,6 +126,7 @@ public class HomeRestController {
 	//회원가입
 	@PostMapping(value = "/signUpProcess")
 	public void signUpProcess(@RequestBody User user) {
+		System.out.println(user.getOffice_zip());
 		uService.registerMember(user);
 	}
 	
