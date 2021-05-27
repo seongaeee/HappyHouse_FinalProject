@@ -68,6 +68,10 @@ export default {
           key: "wdate",
           label: "작성일",
         },
+        {
+          key: "count",
+          label: "조회수",
+        },
       ],
     };
   },
