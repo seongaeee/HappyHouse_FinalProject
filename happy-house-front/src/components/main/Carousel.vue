@@ -15,24 +15,25 @@
       <b-carousel-slide
         caption="HAPPYHOUSE"
         text="부동산 매물에 개인 맞춤형 점수를 제공해주는 웹 서비스"
-        img-src="https://picsum.photos/1024/480/?image=52"
+        img-src="https://images.velog.io/images/mulgyeol/post/4819b30c-bf77-4327-a51f-fae0de158015/image.png"
       ></b-carousel-slide>
 
       <!-- Slides with custom text -->
       <b-carousel-slide
-        img-src="https://images.velog.io/images/mulgyeol/post/4819b30c-bf77-4327-a51f-fae0de158015/image.png"
-      >
-        <h1>HAPPYHOUSE</h1>
-      </b-carousel-slide>
+        caption="HAPPYHOUSE"
+        text="부동산 매물에 개인 맞춤형 점수를 제공해주는 웹 서비스"
+        img-src="https://images.velog.io/images/mulgyeol/post/e3b2bd5f-a316-495d-99df-2cc4b44953af/house3.jpg"
+      ></b-carousel-slide>
+
+      <b-carousel-slide
+        caption="HAPPYHOUSE"
+        text="부동산 매물에 개인 맞춤형 점수를 제공해주는 웹 서비스"
+        img-src="https://images.velog.io/images/mulgyeol/post/cb301f4f-e920-4327-9da1-9a18144740b9/house2.jpg"
+      ></b-carousel-slide>
 
       <b-carousel-slide caption="HAPPYHOUSE" img-blank img-alt="Blank image">
         <p>부동산 매물에 개인 맞춤형 점수를 제공해주는 웹 서비스</p>
       </b-carousel-slide>
-
-      <!-- Slides with image only -->
-      <b-carousel-slide
-        img-src="https://images.velog.io/images/mulgyeol/post/4819b30c-bf77-4327-a51f-fae0de158015/image.png"
-      ></b-carousel-slide>
     </b-carousel>
   </div>
 </template>
