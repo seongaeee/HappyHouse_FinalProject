@@ -9,7 +9,6 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item>공지사항</b-nav-item>
           <b-nav-item
             ><router-link to="/board/list" style="color: white">QnA</router-link></b-nav-item
           >
