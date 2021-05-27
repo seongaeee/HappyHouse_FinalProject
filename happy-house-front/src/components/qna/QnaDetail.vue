@@ -4,20 +4,38 @@
     <b-row>
       <b-col></b-col>
       <b-col cols="8">
-        <b-card bg-variant="light" id="sign-card">
+        <b-card id="sign-card">
           <br />
-          <div class="content-detail-content-info">
-            <div class="content-detail-content-info-left">
-              <div class="content-detail-content-info-left-number">글번호: {{ board.no }}</div>
-              <div class="content-detail-content-info-left-subject">제목: {{ board.title }}</div>
-            </div>
-            <div class="content-detail-content-info-right">
-              <div class="content-detail-content-info-right-user">글쓴이: {{ board.id }}</div>
-              <div class="content-detail-content-info-right-created">작성일: {{ board.wdate }}</div>
-              <div class="content-detail-content-info-right-created">조회수: {{ board.count }}</div>
-            </div>
-          </div>
-          <div class="content-detail-content">{{ board.content }}</div>
+          <table class="detail-table">
+            <thead>
+              <tr>
+                <th rowspan="3">글번호</th>
+                <td rowspan="3">{{ board.no }}</td>
+                <th rowspan="3">제목</th>
+                <td rowspan="3">{{ board.title }}</td>
+                <th>작성자</th>
+                <td>{{ board.id }}</td>
+              </tr>
+              <tr>
+                <th>작성일</th>
+                <td>{{ board.wdate }}</td>
+              </tr>
+              <tr>
+                <th>조회수</th>
+                <td>{{ board.count }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th colspan="6">내용</th>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  {{ content }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <br />
           <b-button v-if="id == board.id" variant="primary" @click="updateBoard">수정</b-button
           >&nbsp;
@@ -36,16 +54,16 @@ export default {
   created() {
     //action call
     var no = this.$route.params.no; //이전화면에서 파라메터 받아옴
+    this.id = localStorage.getItem("id");
     console.log(no);
-    this.$store.dispatch("SHOWBOARD", { no: no });
-  },
-  computed: {
-    board() {
-      return this.$store.state.board;
-    },
-    id() {
-      return localStorage.getItem("id");
-    },
+    this.$store
+      .dispatch("SHOWBOARD", {
+        no: no,
+      })
+      .then(() => {
+        this.board = this.$store.state.board;
+        this.content = this.$store.state.board.content;
+      });
   },
   methods: {
     deleteBoard() {
@@ -60,55 +78,17 @@ export default {
       });
     },
   },
+  data() {
+    return {
+      board: null,
+      id: null,
+      content: null,
+    };
+  },
 };
 </script>
 
 <style scoped>
-.content-detail-content-info {
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  font-size: 20px;
-}
-
-.content-detail-content-info-left {
-  width: 720px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
-
-.content-detail-content-info-right {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-
-.content-detail-content {
-  border: 1px solid black;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  min-height: 720px;
-  font-size: 20px;
-}
-
-.content-detail-button {
-  border: 1px solid black;
-  margin-top: 1rem;
-  padding: 2rem;
-}
-
-.content-detail-comment {
-  border: 1px solid black;
-  margin-top: 1rem;
-  padding: 2rem;
-}
-
 #qna-detail {
   width: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -117,5 +97,43 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-bottom: 4%;
+}
+
+table.detail-table {
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid rgb(204, 204, 204);
+  width: 100%;
+  height: 30%;
+}
+table.detail-table thead th {
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  background: #6c757d;
+}
+table.detail-table tbody th {
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  background: #6c757d;
+}
+table.detail-table tbody td {
+  height: 500px;
+  text-align: initial;
+  padding: 20px;
+  vertical-align: top;
+}
+
+table.detail-table td {
+  border: 1px solid rgb(204, 204, 204);
+}
+
+table.detail-table th {
+  border: 1px solid rgb(204, 204, 204);
+}
+
+#sign-card {
+  background-color: #f8f8f8;
 }
 </style>

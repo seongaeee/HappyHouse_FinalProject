@@ -304,8 +304,7 @@ export default new Vuex.Store({
     },
 
     SHOWBOARD: (store, payload) => {
-      console.log(payload);
-      axios
+      return axios
         .get("/board/" + payload.no)
         .then((response) => {
           console.log("조회 처리하였습니다.");
