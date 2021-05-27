@@ -29,19 +29,27 @@ public class ScoreCalculation {
 				score += scoreStation;
 				houseinfo.setStationScore(scoreStation);
 			}
+			else {
+				houseinfo.setStationScore(0.0);
+			}
 		}
 		if(map.get("pet")!=null) {
 			if(map.get("pet")<=2) { //2km 이하
 				double scorePark = (10 - (map.get("pet")*10)/2) * ratio; 
 				score += scorePark;
 				houseinfo.setParkScore(scorePark);
-			}			
+			}
+			else {
+				houseinfo.setParkScore(0.0);
+			}
 		}
 		if(map.get("office")!=null) {
 			if(map.get("office")<=20) { //20km 이하
 				double scoreOffice = (10 - (map.get("office")*10)/20) * ratio;
 				score += scoreOffice;
 				houseinfo.setOfficeScore(scoreOffice);
+			}else {
+				houseinfo.setOfficeScore(0.0);
 			}			
 		}
 		
