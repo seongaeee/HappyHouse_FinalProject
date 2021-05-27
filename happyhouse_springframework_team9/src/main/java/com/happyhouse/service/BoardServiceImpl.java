@@ -21,6 +21,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board selectOne(String no) {
+		dao.updateCount(no);
 		return dao.selectOne(no);
 	}
 

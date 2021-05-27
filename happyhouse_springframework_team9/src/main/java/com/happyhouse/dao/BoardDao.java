@@ -11,5 +11,5 @@ public interface BoardDao {
 	public void delete(String no);
 	public void update(Board board);
 	public void insert(Board board); 
-	
+	public void updateCount(String no);
 }

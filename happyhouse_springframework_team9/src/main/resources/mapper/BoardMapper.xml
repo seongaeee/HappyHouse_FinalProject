@@ -26,4 +26,9 @@
 		delete from board where no=#{no}
 	</delete>
 	
+	<update id="updateCount" parameterType="java.lang.String">
+		update board 
+		set count = count+1 where no=#{no}
+	</update>
+	
 </mapper>
