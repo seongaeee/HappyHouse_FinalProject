@@ -1,10 +1,8 @@
 
 public class test {
 	public static void main(String[] args) {
-		String x = "123.957473839";
-		String x2 = "-123.957473839";
-		Double y = Double.parseDouble(x)+Double.parseDouble(x2);
+		String x = null;
 		
-		System.out.println(y);
+		System.out.println(x.equals("Y"));
 	}
 }
