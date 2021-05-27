@@ -283,6 +283,7 @@ export default {
         this.zip == "" ||
         this.address_base == "" ||
         this.address_detail == "" ||
+        this.tel == "" ||
         this.$store.state.checkexist
       ) {
         document.getElementById("message").innerText = "입력 값을 확인해 주세요.";
