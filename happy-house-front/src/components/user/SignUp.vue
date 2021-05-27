@@ -287,23 +287,26 @@ export default {
       ) {
         document.getElementById("message").innerText = "입력 값을 확인해 주세요.";
       } else {
-        this.$store.dispatch("SIGNUP", {
-          id: this.id,
-          pass: this.pass,
-          name: this.name,
-          email: this.email,
-          address_base: this.address_base,
-          address_detail: this.address_detail,
-          zip: this.zip,
-          tel: this.tel,
-          office_zip: this.office_zip,
-          office_address_base: this.address_base,
-          office_address_detail: this.address_detail,
-          scoreCheck: this.scoreCheck,
-          car: this.car,
-          pet: this.pet,
-        });
-        location.href = "/";
+        this.$store
+          .dispatch("SIGNUP", {
+            id: this.id,
+            pass: this.pass,
+            name: this.name,
+            email: this.email,
+            address_base: this.address_base,
+            address_detail: this.address_detail,
+            zip: this.zip,
+            tel: this.tel,
+            office_zip: this.office_zip,
+            office_address_base: this.address_base,
+            office_address_detail: this.address_detail,
+            scoreCheck: this.scoreCheck,
+            car: this.car,
+            pet: this.pet,
+          })
+          .then(() => {
+            location.href = "/";
+          });
       }
     },
   },

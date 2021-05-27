@@ -126,7 +126,7 @@ export default new Vuex.Store({
     },
     SIGNUP: (store, payload) => {
       //console.log(payload);
-      axios
+      return axios
         .post("/signUpProcess", {
           id: payload.id,
           pass: payload.pass,
